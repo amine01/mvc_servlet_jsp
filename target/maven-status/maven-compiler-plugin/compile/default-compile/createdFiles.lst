@@ -1,3 +1,5 @@
-com\essamine\tests\Teste.class
+com\essamine\entities\setup.class
 com\essamine\entities\Person.class
 com\essamine\entities\Passport.class
+com\essamine\entities\demo.class
+com\essamine\tests\Teste.class

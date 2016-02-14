@@ -4,9 +4,29 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>serv</servlet-name>
+		<display-name>serv</display-name>
+		<description></description>
+		<servlet-class>com.essamine.entities.serv</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>demo</servlet-name>
+		<display-name>demo</display-name>
+		<description></description>
+		<servlet-class>com.essamine.entities.demo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>serv</servlet-name>
+		<url-pattern>/serv</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>demo</servlet-name>
+		<url-pattern>/demo</url-pattern>
+	</servlet-mapping>
 	<resource-ref>
 		<description>bla..bla..bla...</description>
-		<res-ref-name>jdbc/personDB</res-ref-name>
+		<res-ref-name>jdbc/trainingDB</res-ref-name>
 		<res-type>
 			org.hsqldb.jdbc.JDBCDataSource
 		</res-type>
