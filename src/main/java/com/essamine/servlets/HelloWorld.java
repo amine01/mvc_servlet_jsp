@@ -16,9 +16,10 @@ public class HelloWorld extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		RequestDispatcher view = req.getRequestDispatcher("jsp/hello.jsp");
+		String name=req.getParameter("name");
+		req.setAttribute("name", name);
 		view.forward(req, resp);
-		// resp.setContentType("text/html");
-		// resp.getWriter().println("<h1>hello from servlet</h1>");
+
 	}
 
 	@Override
