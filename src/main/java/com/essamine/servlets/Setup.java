@@ -4,11 +4,13 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import com.essamine.repositories.PassportRepository;
 import com.essamine.repositories.PersonRepository;
 
 // this listner will run your code before the web application is started.
+@WebListener
 public class Setup implements ServletContextListener {
 
 	@Override
