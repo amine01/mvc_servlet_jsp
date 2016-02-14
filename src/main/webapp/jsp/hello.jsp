@@ -10,7 +10,8 @@
 	<%="salut tout le monde"%>
 	<br>
 	<h1><%=1 + 19%></h1>
-	<c:out value="${name}"></c:out>
+	<c:out value="${name}"/>
+	<c:out value="${prenom}"/>
 	<br>
 
 </body>

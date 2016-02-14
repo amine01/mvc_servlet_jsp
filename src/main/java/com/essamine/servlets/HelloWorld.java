@@ -17,7 +17,9 @@ public class HelloWorld extends HttpServlet {
 
 		RequestDispatcher view = req.getRequestDispatcher("jsp/hello.jsp");
 		String name=req.getParameter("name");
+		String prenom=req.getParameter("prenom");
 		req.setAttribute("name", name);
+		req.setAttribute("prenom", prenom);
 		view.forward(req, resp);
 
 	}
