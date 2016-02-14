@@ -10,8 +10,7 @@ public class Passport {
 	public Passport() {
 	}
 
-	public Passport(long id, String passportNumber, Date valid_date) {
-		this.id = id;
+	public Passport(String passportNumber, Date valid_date) {
 		this.passportNumber = passportNumber;
 		this.valid_date = valid_date;
 	}

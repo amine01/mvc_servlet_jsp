@@ -13,8 +13,7 @@ public class Person {
 
 	}
 
-	public Person(long id, String firstname, String lastname, Date dob, long passportID) {
-		this.id = id;
+	public Person(String firstname, String lastname, Date dob, long passportID) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.dob = dob;

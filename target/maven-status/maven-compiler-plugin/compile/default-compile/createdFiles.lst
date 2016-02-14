@@ -1,8 +1,5 @@
-com\essamine\tests\setup.class
-com\essamine\entities\Person.class
-com\essamine\repositories\PassportRepository.class
 com\essamine\repositories\PersonRepository.class
+com\essamine\entities\Person.class
 com\essamine\entities\Passport.class
-com\essamine\tests\Teste.class
 com\essamine\servlets\Setup.class
-com\essamine\tests\demo.class
+com\essamine\repositories\PassportRepository.class
