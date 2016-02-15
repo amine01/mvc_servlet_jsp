@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -44,6 +46,33 @@ public class PersonRepository {
 		} finally {
 			cnt.close();
 		}
+	}
+
+	public List<Person> findAll() throws SQLException {
+		Connection cnt = ds.getConnection();
+		try {
+			Statement stmt = cnt.createStatement();
+			try {
+				String sql = "select * from person";
+				ResultSet rs = stmt.executeQuery(sql);
+				try {
+					List<Person> persons = new ArrayList<Person>();
+					while (rs.next()) {
+						persons.add(format(rs));
+					}
+					System.out.println("nbre de personnes="+persons.size());
+					return persons;
+				} finally {
+					rs.close();
+				}
+			} finally {
+				stmt.close();
+			}
+
+		} finally {
+			cnt.close();
+		}
+
 	}
 
 	public Person find(long id) throws SQLException {

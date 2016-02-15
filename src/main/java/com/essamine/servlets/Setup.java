@@ -27,41 +27,50 @@ public class Setup implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
+
+		PassportRepository passportRepository = new PassportRepository();
+		PersonRepository personRepository = new PersonRepository();
+
 		try {
-			new PassportRepository().init();
-			new PersonRepository().init();
+			passportRepository.init();
+			personRepository.init();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		/*
-		 * try {
-		 * 
-		 * PassportRepository passportRepository = new PassportRepository();
-		 * PersonRepository personRepository=new PersonRepository();
-		 * 
-		 * passportRepository.init(); personRepository.init();
-		 * 
-		 * SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-		 * String dateInString = "05-05-2017 10:20:56"; Date date; java.sql.Date
-		 * sqlDate; try { date = format.parse(dateInString); sqlDate=new
-		 * java.sql.Date(date.getTime()); // java.sql.Date sqlDate = new
-		 * java.sql.Date(new java.util.Date().getTime());
-		 * 
-		 * } catch (ParseException e) { // TODO Auto-generated catch block throw
-		 * new RuntimeException(e); } Passport passport = new Passport("ab1521",
-		 * sqlDate);
-		 * 
-		 * passportRepository.create(passport);
-		 * 
-		 * System.out.println(passport.getId()); Person person=new
-		 * Person("amine","essadkaoui", sqlDate, passport.getId());
-		 * personRepository.create(person);
-		 * 
-		 * 
-		 * 
-		 * } catch (SQLException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */
+		try {
+
+			passportRepository.init();
+			personRepository.init();
+			// ########################## fixing date problem
+			SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+			String dateInString = "05-05-2017 10:20:56";
+			Date date;
+			java.sql.Date sqlDate;
+
+			try {
+				date = format.parse(dateInString);
+				sqlDate = new java.sql.Date(date.getTime());
+			} catch (ParseException e) { // TODO Auto-generated catch block
+											//
+				throw new RuntimeException(e);
+			}
+			// ########################## end fixing date problem
+			Passport passport = new Passport("ab1521", sqlDate);
+			Passport passport2 = new Passport("a012", sqlDate);
+
+			passportRepository.create(passport);
+			passportRepository.create(passport2);
+
+			// System.out.println(passport.getId());
+			Person person = new Person("amine", "essadkaoui", sqlDate, passport.getId());
+			Person person2 = new Person("salim", "selali", sqlDate, passport2.getId());
+			personRepository.create(person);
+			personRepository.create(person2);
+
+		} catch (SQLException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
