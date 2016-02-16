@@ -7,12 +7,12 @@
 </head>
 <body>
 	<c:forEach var="person" items="${persons}">
-		<li><a href="#"><c:out value="${person.firstname}" /> <c:out
-					value="${person.lastname}" /></a></li>
+		<li><a href="/helloProjectWeb/person?id=${person.id}"><c:out
+					value="${person.firstname}" /> <c:out value="${person.lastname}" /></a></li>
 
 
 	</c:forEach>
-	<a href="/helloProjectWeb/person">add person</a>
+	<a href="/helloProjectWeb/person?add">add person</a>
 
 </body>
 </html>

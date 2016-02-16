@@ -116,7 +116,7 @@ public class PassportRepository {
 		Passport passport = new Passport();
 		passport.setId(rs.getLong("id"));
 		passport.setPassportNumber(rs.getString("passportNumber"));
-		passport.setValid_date(rs.getDate("dob"));
+		passport.setValid_date(rs.getDate("valid_date"));
 
 		return passport;
 	}

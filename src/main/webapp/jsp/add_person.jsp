@@ -7,7 +7,7 @@
 </head>
 <body>
 	<form action="/helloProjectWeb/person" method="POST">
-		<input type="hidden" name="action" value="add">
+		<input type="hidden" name="add">
 		<ul>
 			<li>First name : <input type="text" name="firstname">
 			</li>

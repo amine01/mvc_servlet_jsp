@@ -28,15 +28,31 @@ public class PersonServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("GET" + req.getParameter("action"));
-		req.getRequestDispatcher("jsp/add_person.jsp").forward(req, resp);
+		//System.out.println("GET" + req.getParameter("action"));
+
+		if (req.getParameter("add") != null) {
+			req.getRequestDispatcher("jsp/add_person.jsp").forward(req, resp);
+		} else {
+			try {
+				Person person = personRepository.find(Long.parseLong(req.getParameter("id")));
+				Passport passport = passportRepository.find(person.getPassportID());
+				req.setAttribute("person", person);
+				req.setAttribute("passport", passport);
+				req.getRequestDispatcher("jsp/view_person.jsp").forward(req, resp);
+
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("POST" + req.getParameter("action"));
-		
+		// System.out.println("POST" + req.getParameter("action"));
+
 		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");
 		Date sqlDate = null;
 		try {
@@ -45,8 +61,8 @@ public class PersonServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-	//	if (req.getParameter("action") == "add") {
+
+		if (req.getParameter("add") != null) {
 			try {
 				Passport passport = new Passport(req.getParameter("passportnumber"), sqlDate);
 
@@ -56,13 +72,13 @@ public class PersonServlet extends HttpServlet {
 						passport.getId());
 
 				personRepository.create(person);
-				
+
 				resp.sendRedirect("/helloProjectWeb/persons");
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		//}
+		}
 
 	}
 }
