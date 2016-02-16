@@ -7,6 +7,7 @@
 </head>
 <body>
 	<form action="/helloProjectWeb/person" method="POST">
+		<input type="hidden" name="action" value="add">
 		<ul>
 			<li>First name : <input type="text" name="firstname">
 			</li>
@@ -18,8 +19,8 @@
 			</li>
 			<li>Valid Date : <input type="text" name="valid_date">dd-M-yyyy
 			</li>
-			</ul>
-			<input type="submit" value="add">
+		</ul>
+		<input type="submit" value="add">
 	</form>
 	<a href="/helloProjectWeb/persons">go back to person list</a>
 </body>
