@@ -18,8 +18,6 @@ public class PersonListServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 		try {
 			req.setAttribute("persons", personRepository.findAll());
 			RequestDispatcher view = req.getRequestDispatcher("jsp/listPersons.jsp");
@@ -31,9 +29,4 @@ public class PersonListServlet extends HttpServlet {
 
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-	}
 }

@@ -37,11 +37,11 @@ public class Setup implements ServletContextListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+/*
 		try {
 
-			passportRepository.init();
-			personRepository.init();
+			//passportRepository.init();
+			//personRepository.init();
 			// ########################## fixing date problem
 			SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
 			String dateInString = "05-05-2017 10:20:56";
@@ -71,6 +71,6 @@ public class Setup implements ServletContextListener {
 		} catch (SQLException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+*/
 	}
 }

@@ -1,7 +1,7 @@
-com\essamine\servlets\HelloWorld.class
-com\essamine\repositories\PersonRepository.class
 com\essamine\entities\Person.class
+com\essamine\servlets\PersonServlet.class
+com\essamine\repositories\PassportRepository.class
+com\essamine\servlets\PersonListServlet.class
+com\essamine\repositories\PersonRepository.class
 com\essamine\entities\Passport.class
 com\essamine\servlets\Setup.class
-com\essamine\servlets\PersonListServlet.class
-com\essamine\repositories\PassportRepository.class
