@@ -131,8 +131,23 @@ public class PersonRepository {
 			Statement stmt = cnt.createStatement();
 			try {
 				String sql = "update person set firstname='" + person.getFirstname() + "'" + ",lastname='"
-						+ person.getLastname() + "' ,dob=" + person.getDob() + ",passport_id=" + person.getPassportID()
+						+ person.getLastname() + "' ,dob='" + person.getDob() + "',passport_id=" + person.getPassportID()
 						+ " where id=" + person.getId();
+				stmt.executeUpdate(sql);
+			} finally {
+				stmt.close();
+			}
+		} finally {
+			cnt.close();
+		}
+	}
+
+	public void delete(Person person) throws SQLException {
+		Connection cnt = ds.getConnection();
+		try {
+			Statement stmt = cnt.createStatement();
+			try {
+				String sql = "delete from person where id=" + person.getId();
 				stmt.executeUpdate(sql);
 			} finally {
 				stmt.close();

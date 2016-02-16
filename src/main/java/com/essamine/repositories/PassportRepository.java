@@ -102,7 +102,7 @@ public class PassportRepository {
 			Statement stmt = cnt.createStatement();
 			try {
 				String sql = "update passport set passportnumber='" + passport.getPassportNumber() + "',"
-						+ "valid_date=" + passport.getValid_date() + " where id=" + passport.getId();
+						+ "valid_date='" + passport.getValid_date() + "' where id=" + passport.getId();
 				stmt.executeUpdate(sql);
 			} finally {
 				stmt.close();
@@ -111,7 +111,23 @@ public class PassportRepository {
 			cnt.close();
 		}
 	}
-
+	
+	
+	public void delete(Passport passport) throws SQLException {
+		Connection cnt = ds.getConnection();
+		try {
+			Statement stmt = cnt.createStatement();
+			try {
+				String sql = "delete from passport where id=" + passport.getId();
+				stmt.executeUpdate(sql);
+			} finally {
+				stmt.close();
+			}
+		} finally {
+			cnt.close();
+		}
+	}
+	
 	public Passport format(ResultSet rs) throws SQLException {
 		Passport passport = new Passport();
 		passport.setId(rs.getLong("id"));

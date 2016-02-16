@@ -7,12 +7,11 @@
 </head>
 <body>
 	<c:forEach var="person" items="${persons}">
-		<li><a href="/helloProjectWeb/person?id=${person.id}"><c:out
-					value="${person.firstname}" /> <c:out value="${person.lastname}" /></a></li>
-
-
+		<li><c:out value="${person.firstname}" /> <c:out
+				value="${person.lastname}" /> <a
+			href="/helloProjectWeb/person?edit&id=${person.id}">Edit</a> | <a
+			href="/helloProjectWeb/person?delete&id=${person.id}">Delete</a></li>
 	</c:forEach>
 	<a href="/helloProjectWeb/person?add">add person</a>
-
 </body>
 </html>
