@@ -18,14 +18,10 @@ public class PersonListServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			req.setAttribute("persons", personRepository.findAll());
-			RequestDispatcher view = req.getRequestDispatcher("jsp/list_persons.jsp");
-			view.forward(req, resp);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		req.setAttribute("persons", personRepository.findAll());
+		RequestDispatcher view = req.getRequestDispatcher("jsp/list_persons.jsp");
+		view.forward(req, resp);
 
 	}
 
