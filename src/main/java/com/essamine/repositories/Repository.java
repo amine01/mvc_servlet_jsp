@@ -33,6 +33,7 @@ public class Repository<E> {
 		em.getTransaction().begin();
 		em.remove(entity);
 		em.getTransaction().commit();
+		
 	}
 
 }

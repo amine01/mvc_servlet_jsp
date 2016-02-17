@@ -2,7 +2,7 @@ package com.essamine.servlets;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.SQLException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.essamine.entities.Passport;
 import com.essamine.entities.Person;
-import com.essamine.repositories.PassportRepository;
 import com.essamine.repositories.PersonRepository;
 
 @WebServlet("/person")
@@ -24,7 +23,7 @@ public class PersonServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	final PassportRepository passportRepository = new PassportRepository();
+	//final PassportRepository passportRepository = new PassportRepository();
 	final PersonRepository personRepository = new PersonRepository();
 
 	@Override
@@ -41,10 +40,10 @@ public class PersonServlet extends HttpServlet {
 		} else if (req.getParameter("delete") != null) {
 
 			Person person = personRepository.find(Long.parseLong(req.getParameter("id")));
-			Passport passport = person.getPassport();
-
+			//Passport passport = person.getPassport();
+			
 			personRepository.delete(person);
-			passportRepository.delete(passport);
+			//passportRepository.delete(passport);
 			resp.sendRedirect("/helloProjectWeb/persons");
 		} else {
 			req.getRequestDispatcher("/helloProjectWeb/").forward(req, resp);
@@ -74,7 +73,7 @@ public class PersonServlet extends HttpServlet {
 			Passport passport = new Passport(req.getParameter("passportnumber"),
 					convertToSqlDate(req.getParameter("valid_date")));
 
-			passport = passportRepository.save(passport);
+			//passport = passportRepository.save(passport);
 
 			Person person = new Person(req.getParameter("firstname"), req.getParameter("lastname"),
 					convertToSqlDate(req.getParameter("dob")), passport);
@@ -88,19 +87,16 @@ public class PersonServlet extends HttpServlet {
 			long id = Long.parseLong(req.getParameter("id"));
 
 			Person person = personRepository.find(id);
-			System.out.println(person.getPassport().getPassportNumber());
 			Passport passport = person.getPassport();
 
 			passport.setPassportNumber(req.getParameter("passportnumber"));
 			passport.setValid_date(convertToSqlDate(req.getParameter("valid_date")));
-			passport = passportRepository.save(passport);
-
-			// Person person =
-			// personRepository.find(Long.parseLong(req.getParameter("id")));
+			//passport = passportRepository.save(passport);
 			person.setFirstname(req.getParameter("firstname"));
 			person.setLastname(req.getParameter("lastname"));
 			person.setDob(convertToSqlDate(req.getParameter("dob")));
 			person.setPassport(passport);
+			
 			personRepository.save(person);
 
 			req.setAttribute("persons", personRepository.findAll());

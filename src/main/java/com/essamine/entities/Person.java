@@ -2,6 +2,7 @@ package com.essamine.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,13 +21,12 @@ public class Person {
 	private String lastname;
 	@Column
 	private Date dob;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Passport passport;
 
 	public Person() {
 
 	}
-
 
 	public Person(String firstname, String lastname, Date dob, Passport passport) {
 		this.firstname = firstname;
@@ -35,16 +35,13 @@ public class Person {
 		this.passport = passport;
 	}
 
-
 	public Passport getPassport() {
 		return passport;
 	}
 
-
 	public void setPassport(Passport passport) {
 		this.passport = passport;
 	}
-
 
 	public long getId() {
 		return id;
@@ -77,7 +74,5 @@ public class Person {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-
-
 
 }
