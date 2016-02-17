@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Person {
@@ -19,19 +20,31 @@ public class Person {
 	private String lastname;
 	@Column
 	private Date dob;
-	@Column
-	private long passportID;
+	@OneToOne
+	private Passport passport;
 
 	public Person() {
 
 	}
 
-	public Person(String firstname, String lastname, Date dob, long passportID) {
+
+	public Person(String firstname, String lastname, Date dob, Passport passport) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.dob = dob;
-		this.passportID = passportID;
+		this.passport = passport;
 	}
+
+
+	public Passport getPassport() {
+		return passport;
+	}
+
+
+	public void setPassport(Passport passport) {
+		this.passport = passport;
+	}
+
 
 	public long getId() {
 		return id;
@@ -65,12 +78,6 @@ public class Person {
 		this.dob = dob;
 	}
 
-	public long getPassportID() {
-		return passportID;
-	}
 
-	public void setPassportID(long passportID) {
-		this.passportID = passportID;
-	}
 
 }

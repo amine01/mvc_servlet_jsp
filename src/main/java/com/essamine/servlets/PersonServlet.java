@@ -35,16 +35,16 @@ public class PersonServlet extends HttpServlet {
 			req.getRequestDispatcher("jsp/add_person.jsp").forward(req, resp);
 		} else if (req.getParameter("edit") != null) {
 			System.out.println("edit GET" + req.getParameter("id"));
-
-			Person person = personRepository.find(Long.parseLong(req.getParameter("id")));
-			Passport passport = passportRepository.find(person.getPassportID());
+			long id = Long.parseLong(req.getParameter("id"));
+			Person person = personRepository.find(id);
+			Passport passport = person.getPassport();
 			req.setAttribute("person", person);
 			req.setAttribute("passport", passport);
 			req.getRequestDispatcher("jsp/edit_person.jsp").forward(req, resp);
 		} else if (req.getParameter("delete") != null) {
 
 			Person person = personRepository.find(Long.parseLong(req.getParameter("id")));
-			Passport passport = passportRepository.find(person.getPassportID());
+			Passport passport = person.getPassport();
 
 			personRepository.delete(person);
 			passportRepository.delete(passport);
@@ -57,7 +57,7 @@ public class PersonServlet extends HttpServlet {
 	}
 
 	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");//HH:mm:ss 
+		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
 		Date sqlDate = null;
 		try {
 			sqlDate = new Date(format.parse(dateString).getTime());
@@ -77,10 +77,10 @@ public class PersonServlet extends HttpServlet {
 			Passport passport = new Passport(req.getParameter("passportnumber"),
 					convertToSqlDate(req.getParameter("valid_date")));
 
-			passport=passportRepository.save(passport);
+			passport = passportRepository.save(passport);
 
 			Person person = new Person(req.getParameter("firstname"), req.getParameter("lastname"),
-					convertToSqlDate(req.getParameter("dob")), passport.getId());
+					convertToSqlDate(req.getParameter("dob")), passport);
 
 			personRepository.save(person);
 
@@ -88,23 +88,28 @@ public class PersonServlet extends HttpServlet {
 
 		} else if (req.getParameter("edit") != null) {
 			System.out.println("POST edit" + req.getParameter("id"));
-			Passport passport = passportRepository
-					.find(personRepository.find(Long.parseLong(req.getParameter("id"))).getPassportID());
+			long id = Long.parseLong(req.getParameter("id"));
+
+			Person person = personRepository.find(id);
+			System.out.println(person.getPassport().getPassportNumber());
+			Passport passport = person.getPassport();
+
 			passport.setPassportNumber(req.getParameter("passportnumber"));
 			passport.setValid_date(convertToSqlDate(req.getParameter("valid_date")));
-			passport=passportRepository.save(passport);
+			passport = passportRepository.save(passport);
 
-			Person person = personRepository.find(Long.parseLong(req.getParameter("id")));
+			// Person person =
+			// personRepository.find(Long.parseLong(req.getParameter("id")));
 			person.setFirstname(req.getParameter("firstname"));
 			person.setLastname(req.getParameter("lastname"));
 			person.setDob(convertToSqlDate(req.getParameter("dob")));
-			person.setPassportID(passport.getId());
+			person.setPassport(passport);
 			personRepository.save(person);
-			
+
 			req.setAttribute("persons", personRepository.findAll());
 			RequestDispatcher view = req.getRequestDispatcher("jsp/list_persons.jsp");
 			view.forward(req, resp);
-		//	resp.sendRedirect("/helloProjectWeb/persons");
+			// resp.sendRedirect("/helloProjectWeb/persons");
 
 		}
 
