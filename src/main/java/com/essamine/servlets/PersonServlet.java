@@ -61,6 +61,10 @@ public class PersonServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else{
+			req.getRequestDispatcher("/helloProjectWeb/").forward(req, resp);
+
+		}
 
 	}
 
