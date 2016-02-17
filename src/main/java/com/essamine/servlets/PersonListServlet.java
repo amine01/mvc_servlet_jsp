@@ -14,6 +14,10 @@ import com.essamine.repositories.PersonRepository;
 
 @WebServlet("/persons")
 public class PersonListServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final PersonRepository personRepository = new PersonRepository();
 
 	@Override

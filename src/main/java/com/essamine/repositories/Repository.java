@@ -22,12 +22,17 @@ public class Repository<E> {
 		return em.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList();
 	}
 
-	public void save(E entity) {
-		em.merge(entity);
+	public E save(E entity) {
+		em.getTransaction().begin();
+		entity = em.merge(entity);
+		em.getTransaction().commit();
+		return entity;
 	}
 
 	public void delete(E entity) {
+		em.getTransaction().begin();
 		em.remove(entity);
+		em.getTransaction().commit();
 	}
 
 }

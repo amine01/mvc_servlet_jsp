@@ -2,9 +2,19 @@ package com.essamine.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Passport {
+	@Id
+	@GeneratedValue
 	private long id;
+	@Column
 	private String passportNumber;
+	@Column
 	private Date valid_date;
 
 	public Passport() {

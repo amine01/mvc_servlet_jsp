@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,7 +57,7 @@ public class PersonServlet extends HttpServlet {
 	}
 
 	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");//HH:mm:ss 
 		Date sqlDate = null;
 		try {
 			sqlDate = new Date(format.parse(dateString).getTime());
@@ -76,7 +77,7 @@ public class PersonServlet extends HttpServlet {
 			Passport passport = new Passport(req.getParameter("passportnumber"),
 					convertToSqlDate(req.getParameter("valid_date")));
 
-			passportRepository.save(passport);
+			passport=passportRepository.save(passport);
 
 			Person person = new Person(req.getParameter("firstname"), req.getParameter("lastname"),
 					convertToSqlDate(req.getParameter("dob")), passport.getId());
@@ -91,7 +92,7 @@ public class PersonServlet extends HttpServlet {
 					.find(personRepository.find(Long.parseLong(req.getParameter("id"))).getPassportID());
 			passport.setPassportNumber(req.getParameter("passportnumber"));
 			passport.setValid_date(convertToSqlDate(req.getParameter("valid_date")));
-			passportRepository.save(passport);
+			passport=passportRepository.save(passport);
 
 			Person person = personRepository.find(Long.parseLong(req.getParameter("id")));
 			person.setFirstname(req.getParameter("firstname"));
@@ -99,7 +100,11 @@ public class PersonServlet extends HttpServlet {
 			person.setDob(convertToSqlDate(req.getParameter("dob")));
 			person.setPassportID(passport.getId());
 			personRepository.save(person);
-			resp.sendRedirect("/helloProjectWeb/persons");
+			
+			req.setAttribute("persons", personRepository.findAll());
+			RequestDispatcher view = req.getRequestDispatcher("jsp/list_persons.jsp");
+			view.forward(req, resp);
+		//	resp.sendRedirect("/helloProjectWeb/persons");
 
 		}
 
