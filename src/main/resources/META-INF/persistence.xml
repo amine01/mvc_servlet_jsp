@@ -2,9 +2,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="persondb"><!-- alias to the database -->
+	<persistence-unit name="unit">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<non-jta-data-source>jdbc/personDB</non-jta-data-source>
+		<non-jta-data-source>java:comp/env/jdbc/personDB</non-jta-data-source>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />

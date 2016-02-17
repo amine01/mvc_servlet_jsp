@@ -1,10 +1,9 @@
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 	<resource-ref>
-		<description>bla..bla..bla...ref name is just name that we give to our
-			ressource name
+		<description>bla..bla..bla...ref name is just name that we give to our resource name
 		</description>
-		<res-ref-name>jdbc/trainingDB</res-ref-name>
+		<res-ref-name>jdbc/personDB</res-ref-name>
 		<res-type>
 			org.hsqldb.jdbc.JDBCDataSource
 		</res-type>
@@ -13,9 +12,5 @@
 		</res-auth>
 	</resource-ref>
 
-	<servlet-mapping>
-		<servlet-name>jsp</servlet-name>
-		<url-pattern>/jsp/*</url-pattern>
-	</servlet-mapping>
 </web-app>
 
