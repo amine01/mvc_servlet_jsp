@@ -6,7 +6,8 @@
 <title>EDIT PERSON</title>
 </head>
 <body>
-	<form action="/helloProjectWeb/person?edit&id=${person.id}" method="POST">
+	<form action="/helloProjectWeb/person?edit&id=${person.id}"
+		method="POST">
 		<input type="hidden" name="edit">
 		<ul>
 			<li>First name : <input type="text" name="firstname"
@@ -17,6 +18,7 @@
 			</li>
 			<li>DOB : <input type="text" name="dob" value="${person.dob}">
 			</li>
+			<c:set var="passport" value="${person.passport}"></c:set>
 			<li>Passport Number : <input type="text" name="passportnumber"
 				value="${passport.passportNumber}">
 			</li>

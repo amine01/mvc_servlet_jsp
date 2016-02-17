@@ -29,7 +29,6 @@ public class PersonServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// System.out.println("GET" + req.getParameter("action"));
 
 		if (req.getParameter("add") != null) {
 			req.getRequestDispatcher("jsp/add_person.jsp").forward(req, resp);
@@ -37,9 +36,7 @@ public class PersonServlet extends HttpServlet {
 			System.out.println("edit GET" + req.getParameter("id"));
 			long id = Long.parseLong(req.getParameter("id"));
 			Person person = personRepository.find(id);
-			Passport passport = person.getPassport();
 			req.setAttribute("person", person);
-			req.setAttribute("passport", passport);
 			req.getRequestDispatcher("jsp/edit_person.jsp").forward(req, resp);
 		} else if (req.getParameter("delete") != null) {
 
