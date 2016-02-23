@@ -1,7 +1,9 @@
-com\essamine\repositories\PersonRepository.class
 com\essamine\entities\Person.class
-com\essamine\entities\Passport.class
-com\essamine\repositories\Repository.class
 com\essamine\servlets\PersonServlet.class
+com\essamine\controllers\PersonController.class
 com\essamine\servlets\PersonListServlet.class
 com\essamine\repositories\PassportRepository.class
+com\essamine\repositories\PersonRepository.class
+com\essamine\entities\Passport.class
+com\essamine\repositories\Repository.class
+com\essamine\repositories\PersonRepositoryT.class

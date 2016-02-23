@@ -20,8 +20,8 @@
 			<bean class="org.hsqldb.jdbc.JDBCDataSource">
 				<property name="url"
 					value="jdbc:hsqldb:file:E:/Workspace_sts/helloProjectWeb/target/data/personDB" />
-					<property name="user" value="SA"/>
-					<property name="password" value=""></property>
+		<!-- 			<property name="user" value="SA"/>
+					<property name="password" value=""/> -->
 				<!-- //jdbc:hsqldb:file:target/data/trainingdb -->
 			</bean>
 		</property>
