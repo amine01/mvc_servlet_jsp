@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
+			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- ############# HIBERNATE OR JPA PROVIDER ########### -->
@@ -75,7 +75,8 @@
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>2.3.2</version>
+			<version>2.2.8</version>
+			<scope>runtime</scope>
 		</dependency>
 
 
