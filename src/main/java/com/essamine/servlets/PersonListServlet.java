@@ -23,7 +23,7 @@ public class PersonListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setAttribute("persons", personRepository.findAll());
-		RequestDispatcher view = req.getRequestDispatcher("jsp/list_persons.jsp");
+		RequestDispatcher view = req.getRequestDispatcher("view/person/list.jsp");
 		view.forward(req, resp);
 
 	}
