@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.essamine.entities.Passport;
 import com.essamine.entities.Person;
@@ -26,41 +28,36 @@ public class PersonController {
 	PersonRepositoryT personRepositoryT;
 
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
-	protected void getPersons(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		req.setAttribute("persons", personRepositoryT.findAll());
-		
-		RequestDispatcher view = req.getRequestDispatcher("view/person/list.jsp");
-		view.forward(req, resp);
-		
-		
+	public String getPersons(Model model) {
+		model.addAttribute("persons", personRepositoryT.findAll());
+		return "person/list";
 	}
 
+	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "add")
+	public String getPersonAdd() {
+		return "person/add";
+	}
+
+	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "delete")
+	public String getPersonEdit(@RequestParam long id, Model model) {
+		personRepositoryT.delete(id);
+		model.addAttribute("persons", personRepositoryT.findAll());
+		return "person/list";
+	}
+
+//	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "delete")
+//	public String deletePerson(@RequestParam long id, Model model) {
+//		personRepositoryT.delete(id);
+//	//	model.asMap().clear();
+//		return "redirect:view/person/list.jsp";
+//	}
+	
+	
 	@RequestMapping(value = "/person", method = RequestMethod.GET)
-	protected void getPerson(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		if (req.getParameter("add") != null) {
-			req.getRequestDispatcher("view/person/add.jsp").forward(req, resp);
-		} else if (req.getParameter("edit") != null) {
-			System.out.println("edit GET" + req.getParameter("id"));
-			long id = Long.parseLong(req.getParameter("id"));
-
-			Person person = personRepositoryT.findOne(id);
-			req.setAttribute("person", person);
-			req.getRequestDispatcher("view/person/edit.jsp").forward(req, resp);
-		} else if (req.getParameter("delete") != null) {
-
-			Person person = personRepositoryT.findOne(Long.parseLong(req.getParameter("id")));
-			// Passport passport = person.getPassport();
-
-			personRepositoryT.delete(person);
-			// passportRepository.delete(passport);
-			resp.sendRedirect("/helloProjectWeb/persons");
-		} else {
-			req.getRequestDispatcher("/helloProjectWeb/").forward(req, resp);
-
-		}
-
+	public void deletePerson(@RequestParam long id,Model model) {
+		//model.addAttribute("persons", personRepositoryT.findAll());
+		personRepositoryT.delete(id);
+		
 	}
 
 	public Date convertToSqlDate(String dateString) {
