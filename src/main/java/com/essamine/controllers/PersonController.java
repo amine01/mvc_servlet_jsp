@@ -38,26 +38,17 @@ public class PersonController {
 		return "person/add";
 	}
 
-	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "delete")
+	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "edit")
 	public String getPersonEdit(@RequestParam long id, Model model) {
-		personRepositoryT.delete(id);
-		model.addAttribute("persons", personRepositoryT.findAll());
-		return "person/list";
+		model.addAttribute("person", personRepositoryT.findOne(id));
+		return "person/edit";
 	}
 
-//	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "delete")
-//	public String deletePerson(@RequestParam long id, Model model) {
-//		personRepositoryT.delete(id);
-//	//	model.asMap().clear();
-//		return "redirect:view/person/list.jsp";
-//	}
-	
-	
-	@RequestMapping(value = "/person", method = RequestMethod.GET)
-	public void deletePerson(@RequestParam long id,Model model) {
-		//model.addAttribute("persons", personRepositoryT.findAll());
+	@RequestMapping(value = "/person", method = RequestMethod.GET, params = "delete")
+	public String deletePerson(@RequestParam long id, Model model) {
 		personRepositoryT.delete(id);
-		
+		return "redirect:persons";
+			
 	}
 
 	public Date convertToSqlDate(String dateString) {
@@ -71,6 +62,8 @@ public class PersonController {
 
 		return sqlDate;
 	}
+
+	// to spring-field
 
 	@RequestMapping(value = "/person", method = RequestMethod.POST)
 	protected void postPerson(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -104,9 +97,10 @@ public class PersonController {
 			personRepositoryT.save(person);
 
 			req.setAttribute("persons", personRepositoryT.findAll());
-			RequestDispatcher view = req.getRequestDispatcher("view/person/list.jsp");
-			view.forward(req, resp);
-			// resp.sendRedirect("/helloProjectWeb/persons");
+			// RequestDispatcher view =
+			// req.getRequestDispatcher("view/person/list.jsp");
+			// view.forward(req, resp);
+			resp.sendRedirect("/helloProjectWeb/persons");
 
 		}
 
