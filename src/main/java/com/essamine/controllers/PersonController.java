@@ -1,14 +1,8 @@
 package com.essamine.controllers;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +42,7 @@ public class PersonController {
 	public String deletePerson(@RequestParam long id, Model model) {
 		personRepositoryT.delete(id);
 		return "redirect:persons";
-			
+
 	}
 
 	public Date convertToSqlDate(String dateString) {
@@ -65,44 +59,36 @@ public class PersonController {
 
 	// to spring-field
 
-	@RequestMapping(value = "/person", method = RequestMethod.POST)
-	protected void postPerson(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getParameter("add") != null) {
+	@RequestMapping(value = "/person", params = "add", method = RequestMethod.POST)
+	protected String addPerson(@RequestParam String passportnumber, @RequestParam String valid_date,
+			@RequestParam String firstname, @RequestParam String lastname, @RequestParam String dob) {
 
-			Passport passport = new Passport(req.getParameter("passportnumber"),
-					convertToSqlDate(req.getParameter("valid_date")));
+		Passport passport = new Passport(passportnumber, convertToSqlDate(valid_date));
+		Person person = new Person(firstname, lastname, convertToSqlDate(dob), passport);
 
-			Person person = new Person(req.getParameter("firstname"), req.getParameter("lastname"),
-					convertToSqlDate(req.getParameter("dob")), passport);
+		person = personRepositoryT.save(person);
 
-			personRepositoryT.save(person);
 
-			resp.sendRedirect("/helloProjectWeb/persons");
+		return "redirect:persons";
+	}
 
-		} else if (req.getParameter("edit") != null) {
-			System.out.println("POST edit" + req.getParameter("id"));
-			long id = Long.parseLong(req.getParameter("id"));
+	@RequestMapping(value = "/person", params = "edit", method = RequestMethod.POST)
+	protected String editPerson(@RequestParam long id, @RequestParam String passportnumber,
+			@RequestParam String valid_date, @RequestParam String firstname, @RequestParam String lastname,
+			@RequestParam String dob) {
+		Person person = personRepositoryT.findOne(id);
+		Passport passport = person.getPassport();
 
-			Person person = personRepositoryT.findOne(id);
-			Passport passport = person.getPassport();
+		person.setFirstname(firstname);
+		person.setLastname(lastname);
+		person.setDob(convertToSqlDate(dob));
 
-			passport.setPassportNumber(req.getParameter("passportnumber"));
-			passport.setValid_date(convertToSqlDate(req.getParameter("valid_date")));
+		passport.setPassportNumber(passportnumber);
+		passport.setValid_date(convertToSqlDate(valid_date));
 
-			person.setFirstname(req.getParameter("firstname"));
-			person.setLastname(req.getParameter("lastname"));
-			person.setDob(convertToSqlDate(req.getParameter("dob")));
-			person.setPassport(passport);
+		person = personRepositoryT.save(person);
 
-			personRepositoryT.save(person);
-
-			req.setAttribute("persons", personRepositoryT.findAll());
-			// RequestDispatcher view =
-			// req.getRequestDispatcher("view/person/list.jsp");
-			// view.forward(req, resp);
-			resp.sendRedirect("/helloProjectWeb/persons");
-
-		}
-
+		return "redirect:persons";
 	}
 }
+
