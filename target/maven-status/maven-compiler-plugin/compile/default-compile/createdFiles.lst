@@ -1,7 +1,7 @@
-com\essamine\repositories\PersonRepository.class
 com\essamine\entities\Person.class
 com\essamine\entities\Passport.class
-com\essamine\repositories\Repository.class
+com\essamine\entities\Married.class
 com\essamine\repositories\PersonRepositoryT.class
+com\essamine\entities\Single.class
+com\essamine\entities\Child.class
 com\essamine\controllers\PersonController.class
-com\essamine\repositories\PassportRepository.class

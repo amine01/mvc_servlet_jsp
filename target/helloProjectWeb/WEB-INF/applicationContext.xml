@@ -11,13 +11,14 @@
 	<context:annotation-config />
 	<tx:annotation-driven />
 
-	<jpa:repositories base-package="com.marakana.contacts.repositories" />
+	<jpa:repositories base-package="com.essamine.repositories" />
 
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<property name="datasourceBean">
 			<bean class="org.hsqldb.jdbc.JDBCDataSource">
-				<property name="url" value="jdbc:hsqldb:file:E:/Workspace_sts/helloProjectWeb/target/data/personDB" />
+				<property name="url"
+					value="jdbc:hsqldb:file:E:/Workspace_sts/helloProjectWeb/target/data/personDB" />
 			</bean>
 		</property>
 	</bean>
@@ -28,6 +29,7 @@
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="generateDdl" value="true" />
 				<property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
+				<property name="showSql" value="true"></property>
 			</bean>
 		</property>
 	</bean>

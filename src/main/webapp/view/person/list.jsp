@@ -9,9 +9,9 @@
 	<c:forEach var="person" items="${persons}">
 		<li><c:out value="${person.firstname}" /> <c:out
 				value="${person.lastname}" /> <a
-			href="/helloProjectWeb/person?edit&id=${person.id}">Edit</a> | <a
-			href="/helloProjectWeb/person?delete&id=${person.id}">Delete</a></li>
+			href="/helloProjectWeb/single?edit&id=${person.id}">Edit</a> | <a
+			href="/helloProjectWeb/single?delete&id=${person.id}">Delete</a></li><!-- url -->
 	</c:forEach>
-	<a href="/helloProjectWeb/person?add">add person</a>
+	<a href="/helloProjectWeb/single?add">add a single person</a>
 </body>
 </html>

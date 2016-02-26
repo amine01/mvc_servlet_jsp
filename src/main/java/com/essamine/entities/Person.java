@@ -2,14 +2,15 @@ package com.essamine.entities;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Person {
 
 	@Id
@@ -21,26 +22,15 @@ public class Person {
 	private String lastname;
 	@Column
 	private Date dob;
-	@OneToOne(cascade = CascadeType.ALL)
-	private Passport passport;
 
 	public Person() {
 
 	}
 
-	public Person(String firstname, String lastname, Date dob, Passport passport) {
+	public Person(String firstname, String lastname, Date dob) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.dob = dob;
-		this.passport = passport;
-	}
-
-	public Passport getPassport() {
-		return passport;
-	}
-
-	public void setPassport(Passport passport) {
-		this.passport = passport;
 	}
 
 	public long getId() {
