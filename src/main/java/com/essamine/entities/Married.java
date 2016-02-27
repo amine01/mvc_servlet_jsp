@@ -28,4 +28,10 @@ public class Married extends Person {
 		this.children = children;
 	}
 
+	@Override
+	public String getUrl() {
+		
+		return "married?id="+getId();
+	}
+
 }

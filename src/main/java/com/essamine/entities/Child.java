@@ -7,10 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Child {
-	@Id
-	@GeneratedValue
-	private Long id;
+public class Child extends BaseEntity {
+
 	@Column
 	private String firstname;
 	@OneToOne
@@ -21,14 +19,6 @@ public class Child {
 
 	public Child(Passport passport) {
 		this.passport = passport;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Passport getPassport() {

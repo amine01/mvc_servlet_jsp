@@ -11,11 +11,9 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Person {
+public abstract class Person extends BaseEntity{
 
-	@Id
-	@GeneratedValue
-	private long id;
+
 	@Column
 	private String firstname;
 	@Column
@@ -33,13 +31,7 @@ public class Person {
 		this.dob = dob;
 	}
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -64,5 +56,7 @@ public class Person {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	
+	public abstract String getUrl();
 
 }

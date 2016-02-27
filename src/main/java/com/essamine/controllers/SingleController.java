@@ -21,11 +21,11 @@ public class SingleController {
 	@Autowired
 	SingleRepositoryT singleRepositoryT;
 
-	@RequestMapping(value = "/singles", method = RequestMethod.GET)
-	public String getSingles(Model model) {
-		model.addAttribute("singles", singleRepositoryT.findAll());
-		return "single/list";
-	}
+//	@RequestMapping(value = "/singles", method = RequestMethod.GET)
+//	public String getSingles(Model model) {
+//		model.addAttribute("singles", singleRepositoryT.findAll());
+//		return "single/list";
+//	}
 
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "add")
 	public String getSingleAdd() {
