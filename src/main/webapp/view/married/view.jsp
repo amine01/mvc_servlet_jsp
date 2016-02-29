@@ -6,13 +6,13 @@
 <title>VIEW MARRIED PERSON</title>
 </head>
 <body>
-	<h1>${single.firstname}</h1>
+	<h1>${married.firstname}</h1>
 	<ul>
 		<li>${married.firstname}</li>
 		<li>${married.lastname}</li>
-		<li>${married.passportNumber}</li>
+		<li>${married.dob}</li>
 	</ul>
-	<a href="/helloProjectWeb/singles">list persons</a>
+		<a href="/helloProjectWeb/persons">Go back to the list of persons</a>
 
 </body>
 </html>

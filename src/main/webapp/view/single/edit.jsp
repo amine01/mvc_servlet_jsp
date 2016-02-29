@@ -28,6 +28,6 @@
 		</ul>
 		<input type="submit" value="edit">
 	</form>
-	<a href="/helloProjectWeb/persons">go back to person list</a>
+		<a href="/helloProjectWeb/persons">Go back to the list of persons</a>
 </body>
 </html>

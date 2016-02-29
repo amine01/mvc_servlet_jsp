@@ -21,11 +21,11 @@ public class SingleController {
 	@Autowired
 	SingleRepositoryT singleRepositoryT;
 
-//	@RequestMapping(value = "/singles", method = RequestMethod.GET)
-//	public String getSingles(Model model) {
-//		model.addAttribute("singles", singleRepositoryT.findAll());
-//		return "single/list";
-//	}
+	// @RequestMapping(value = "/singles", method = RequestMethod.GET)
+	// public String getSingles(Model model) {
+	// model.addAttribute("singles", singleRepositoryT.findAll());
+	// return "single/list";
+	// }
 
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "add")
 	public String getSingleAdd() {
@@ -42,6 +42,12 @@ public class SingleController {
 	public String deleteSingle(@RequestParam long id, Model model) {
 		singleRepositoryT.delete(id);
 		return "redirect:persons";
+	}
+
+	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "view")
+	public String getViewSingle(@RequestParam long id, Model model) {
+		model.addAttribute("single", singleRepositoryT.findOne(id));
+		return "single/view";
 
 	}
 

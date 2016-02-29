@@ -10,10 +10,12 @@
 		<li><c:out value="${person.firstname}" /> <c:out
 				value="${person.lastname}" /> <a
 			href="${person.url}&edit">Edit</a> | <a
-			href="${person.url}&delete=${person.id}">Delete</a></li>
+			href="${person.url}&delete=${person.id}">Delete</a> |
+			<a href="${person.url}&view=${person.id}">View</a></li>
+			</li>
 		<!-- url -->
 	</c:forEach>
-	<a href="/helloProjectWeb/single?add">add a single person</a> | 
+	<a href="/helloProjectWeb/single?add">add a single person</a> |
 	<a href="/helloProjectWeb/married?add">add a married person</a>
 
 </body>

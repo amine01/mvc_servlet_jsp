@@ -37,12 +37,17 @@ public class MarriedController {
 		model.addAttribute("married", marriedRepositoryT.findOne(id));
 		return "married/edit";
 	}
+	
+	@RequestMapping(value = "/married", method = RequestMethod.GET, params = "view")
+	public String getMarriedView(@RequestParam long id, Model model) {
+		model.addAttribute("married", marriedRepositoryT.findOne(id));
+		return "married/view";
+	}
 
 	@RequestMapping(value = "/married", method = RequestMethod.GET, params = "delete")
 	public String deleteMarried(@RequestParam long id, Model model) {
 		marriedRepositoryT.delete(id);
 		return "redirect:persons";
-
 	}
 
 	public Date convertToSqlDate(String dateString) {

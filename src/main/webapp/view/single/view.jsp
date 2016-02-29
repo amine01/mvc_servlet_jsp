@@ -10,9 +10,9 @@
 	<ul>
 		<li>${single.firstname}</li>
 		<li>${single.lastname}</li>
-		<li>${passport.passportNumber}</li>
+		<li>${single.passport.passportNumber}</li>
 	</ul>
-	<a href="/helloProjectWeb/singles">list persons</a>
+		<a href="/helloProjectWeb/persons">Go back to the list of persons</a>
 
 </body>
 </html>
