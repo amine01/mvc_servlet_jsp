@@ -11,7 +11,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Person extends BaseEntity{
+public abstract class Person extends UrlEntity{
 
 
 	@Column
@@ -57,6 +57,4 @@ public abstract class Person extends BaseEntity{
 		this.dob = dob;
 	}
 	
-	public abstract String getUrl();
-
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Married extends Person {
 
-	@OneToMany(mappedBy="married")
+	@OneToMany(mappedBy = "married")
 	private List<Child> children;
 
 	public Married() {
@@ -28,12 +29,6 @@ public class Married extends Person {
 
 	public void setChildren(List<Child> children) {
 		this.children = children;
-	}
-
-	@Override
-	public String getUrl() {
-
-		return "married?id=" + getId();
 	}
 
 }

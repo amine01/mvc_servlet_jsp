@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Passport extends BaseEntity{
-	
+public class Passport extends BaseEntity {
+
 	@Column
 	private String passportNumber;
 	@Column
@@ -22,8 +22,6 @@ public class Passport extends BaseEntity{
 		this.passportNumber = passportNumber;
 		this.valid_date = valid_date;
 	}
-
-
 
 	public String getPassportNumber() {
 		return passportNumber;

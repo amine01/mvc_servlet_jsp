@@ -19,6 +19,7 @@
 			<li>DOB : <input type="text" name="dob" value="${married.dob}">
 			</li>
 		</ul>
+
 		<input type="submit" value="edit">
 	</form>
 		<a href="/helloProjectWeb/persons">Go back to the list of persons</a>

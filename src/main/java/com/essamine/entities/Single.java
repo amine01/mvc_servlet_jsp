@@ -28,10 +28,6 @@ public class Single extends Person {
 		this.passport = passport;
 	}
 
-	@Override
-	public String getUrl() {
-
-		return "single?id="+getId();
-	}
+	
 
 }
