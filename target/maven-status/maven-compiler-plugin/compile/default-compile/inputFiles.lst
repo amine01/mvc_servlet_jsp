@@ -1,7 +1,12 @@
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\repositories\PersonRepositoryT.java
+E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\entities\BaseEntity.java
+E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\controllers\MarriedController.java
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\entities\Married.java
+E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\repositories\SingleRepositoryT.java
+E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\controllers\SingleController.java
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\entities\Person.java
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\entities\Child.java
+E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\repositories\MarriedRepositoryT.java
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\controllers\PersonController.java
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\entities\Passport.java
 E:\Workspace_sts\helloProjectWeb\src\main\java\com\essamine\entities\Single.java
