@@ -11,8 +11,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Married extends Person {
 
-	@OneToMany
-	@JoinTable(joinColumns = @JoinColumn(name = "married_id") , inverseJoinColumns = @JoinColumn(name = "child_id") )
+	@OneToMany(mappedBy="married")
 	private List<Child> children;
 
 	public Married() {

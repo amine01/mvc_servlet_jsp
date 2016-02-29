@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -13,6 +14,9 @@ public class Child extends BaseEntity {
 	private String firstname;
 	@OneToOne
 	Passport passport;
+	
+	@ManyToOne
+	Married married;
 
 	public Child() {
 	}
@@ -37,4 +41,13 @@ public class Child extends BaseEntity {
 		this.firstname = firstname;
 	}
 
+	public Married getMarried() {
+		return married;
+	}
+
+	public void setMarried(Married married) {
+		this.married = married;
+	}
+
+	
 }
