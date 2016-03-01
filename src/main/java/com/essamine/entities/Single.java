@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.essamine.validators.Friend;
+
 @Entity
+@Friend
 public class Single extends Person {
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
