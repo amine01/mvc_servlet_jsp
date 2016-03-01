@@ -5,13 +5,13 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import org.hibernate.validator.constraints.NotBlank;
+import com.essamine.validators.PassportNumber;
 
 @Entity
 public class Passport extends BaseEntity {
 
 	@Column(nullable = false, length = 64)
-	@NotBlank
+	@PassportNumber
 	private String passportNumber;
 	@Column(nullable = false, length = 64)
 	private Date valid_date;

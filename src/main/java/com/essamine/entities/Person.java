@@ -9,6 +9,8 @@ import javax.persistence.InheritanceType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.essamine.validators.PassportNumber;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person extends UrlEntity {
