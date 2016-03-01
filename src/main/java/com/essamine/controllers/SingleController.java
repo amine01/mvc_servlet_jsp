@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.essamine.entities.Passport;
 import com.essamine.entities.Single;
+import com.essamine.repositories.MarriedRepositoryT;
 import com.essamine.repositories.SingleRepositoryT;
 
 @Controller
-public class SingleController{
+public class SingleController {
 
 	@Autowired
 	SingleRepositoryT singleRepositoryT;
+	@Autowired
+	MarriedRepositoryT marriedRepositoryT;
 
 	// @RequestMapping(value = "/singles", method = RequestMethod.GET)
 	// public String getSingles(Model model) {
@@ -35,6 +38,9 @@ public class SingleController{
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "edit")
 	public String getSingleEdit(@RequestParam long id, Model model) {
 		model.addAttribute("single", singleRepositoryT.findOne(id));
+		model.addAttribute("singlefs", singleRepositoryT.findAll());
+		model.addAttribute("marriedfs", marriedRepositoryT.findAll());
+
 		return "single/edit";
 	}
 
@@ -47,11 +53,11 @@ public class SingleController{
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "view")
 	public String getViewSingle(@RequestParam long id, Model model) {
 		model.addAttribute("single", singleRepositoryT.findOne(id));
+		// model.addAttribute("singlefs", singleRepositoryT.findAll());
+		// model.addAttribute("marriedfs", marriedRepositoryT.findAll());
 		return "single/view";
 
 	}
-
-
 
 	// to spring-field
 
@@ -68,16 +74,17 @@ public class SingleController{
 	}
 
 	@RequestMapping(value = "/single", params = "edit", method = RequestMethod.POST)
-	protected String editSingle(@RequestParam long id, @RequestParam String passportnumber,
-			@RequestParam String valid_date, @RequestParam String firstname, @RequestParam String lastname,
-			@RequestParam String dob) {
+	protected String editSingle(@RequestParam long id, @RequestParam long marriedf, @RequestParam long singlef,
+			@RequestParam String passportnumber, @RequestParam String valid_date, @RequestParam String firstname,
+			@RequestParam String lastname, @RequestParam String dob) {
 		Single single = singleRepositoryT.findOne(id);
 		Passport passport = single.getPassport();
 
 		single.setFirstname(firstname);
 		single.setLastname(lastname);
 		single.setDob(convertToSqlDate(dob));
-
+		single.setSingleFriend(singleRepositoryT.findOne(singlef));
+		single.setMarriedFriend(marriedRepositoryT.findOne(marriedf));
 		passport.setPassportNumber(passportnumber);
 		passport.setValid_date(convertToSqlDate(valid_date));
 
@@ -85,16 +92,16 @@ public class SingleController{
 
 		return "redirect:persons";
 	}
-	
+
 	public Date convertToSqlDate(String dateString) {
 		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
 		Date sqlDate = null;
-	
-			try {
-				sqlDate = new Date(format.parse(dateString).getTime());
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-			return sqlDate;
+
+		try {
+			sqlDate = new Date(format.parse(dateString).getTime());
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		return sqlDate;
 	}
 }

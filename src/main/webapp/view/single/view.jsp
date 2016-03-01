@@ -11,8 +11,10 @@
 		<li>${single.firstname}</li>
 		<li>${single.lastname}</li>
 		<li>${single.passport.passportNumber}</li>
+		<li>single friend : ${single.singleFriend.firstname}</li>
+		<li>married friend : ${single.marriedFriend.firstname}</li>
 	</ul>
-		<a href="/helloProjectWeb/persons">Go back to the list of persons</a>
+	<a href="/helloProjectWeb/persons">Go back to the list of persons</a>
 
 </body>
 </html>
