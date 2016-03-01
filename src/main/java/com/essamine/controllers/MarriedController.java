@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.essamine.entities.Married;
 import com.essamine.repositories.MarriedRepositoryT;
-import com.essamine.repositories.SingleRepositoryT;
 
 @Controller
 public class MarriedController {
@@ -37,7 +36,7 @@ public class MarriedController {
 		model.addAttribute("married", marriedRepositoryT.findOne(id));
 		return "married/edit";
 	}
-	
+
 	@RequestMapping(value = "/married", method = RequestMethod.GET, params = "view")
 	public String getMarriedView(@RequestParam long id, Model model) {
 		model.addAttribute("married", marriedRepositoryT.findOne(id));
@@ -48,18 +47,6 @@ public class MarriedController {
 	public String deleteMarried(@RequestParam long id, Model model) {
 		marriedRepositoryT.delete(id);
 		return "redirect:persons";
-	}
-
-	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
-		Date sqlDate = null;
-		try {
-			sqlDate = new Date(format.parse(dateString).getTime());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-
-		return sqlDate;
 	}
 
 	// to spring-field
@@ -88,5 +75,18 @@ public class MarriedController {
 		married = marriedRepositoryT.save(married);
 
 		return "redirect:persons";
+	}
+
+	public Date convertToSqlDate(String dateString) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
+		Date sqlDate = null;
+
+		try {
+			sqlDate = new Date(format.parse(dateString).getTime());
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		return sqlDate;
+
 	}
 }

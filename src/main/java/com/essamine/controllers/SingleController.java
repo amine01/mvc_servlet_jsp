@@ -16,7 +16,7 @@ import com.essamine.entities.Single;
 import com.essamine.repositories.SingleRepositoryT;
 
 @Controller
-public class SingleController {
+public class SingleController{
 
 	@Autowired
 	SingleRepositoryT singleRepositoryT;
@@ -51,17 +51,7 @@ public class SingleController {
 
 	}
 
-	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
-		Date sqlDate = null;
-		try {
-			sqlDate = new Date(format.parse(dateString).getTime());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
 
-		return sqlDate;
-	}
 
 	// to spring-field
 
@@ -94,5 +84,17 @@ public class SingleController {
 		single = singleRepositoryT.save(single);
 
 		return "redirect:persons";
+	}
+	
+	public Date convertToSqlDate(String dateString) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
+		Date sqlDate = null;
+	
+			try {
+				sqlDate = new Date(format.parse(dateString).getTime());
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			return sqlDate;
 	}
 }

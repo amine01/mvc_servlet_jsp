@@ -4,21 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Person extends UrlEntity{
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Person extends UrlEntity {
 
-
-	@Column
+	@Column(nullable = false, length = 64)
 	private String firstname;
-	@Column
+	@Column(nullable = false, length = 64)
 	private String lastname;
-	@Column
+	@Column(nullable = false, length = 64)
 	private Date dob;
 
 	public Person() {
@@ -30,8 +27,6 @@ public abstract class Person extends UrlEntity{
 		this.lastname = lastname;
 		this.dob = dob;
 	}
-
-
 
 	public String getFirstname() {
 		return firstname;
@@ -56,5 +51,5 @@ public abstract class Person extends UrlEntity{
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	
+
 }

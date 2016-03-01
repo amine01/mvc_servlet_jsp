@@ -4,15 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
 public class Passport extends BaseEntity {
 
-	@Column
+	@Column(nullable = false, length = 64)
 	private String passportNumber;
-	@Column
+	@Column(nullable = false, length = 64)
 	private Date valid_date;
 
 	public Passport() {

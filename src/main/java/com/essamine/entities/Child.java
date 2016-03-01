@@ -3,21 +3,18 @@ package com.essamine.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Child extends UrlEntity {
 
-	@Column
+	@Column(nullable = false, length = 64)
 	private String firstname;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	Passport passport;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	Married married;
 
 	public Child() {

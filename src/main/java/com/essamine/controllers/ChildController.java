@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.essamine.entities.Passport;
 import com.essamine.entities.Child;
+import com.essamine.entities.Passport;
 import com.essamine.repositories.ChildRepositoryT;
 import com.essamine.repositories.MarriedRepositoryT;
 
@@ -44,10 +44,10 @@ public class ChildController {
 	}
 
 	@RequestMapping(value = "/child", method = RequestMethod.GET, params = "delete")
-	public String deleteChild(@RequestParam long id,@RequestParam long id_ma, Model model) {
-		childRepositoryT.delete(id);
+	public String deleteChild(@RequestParam long id, @RequestParam long id_ma, Model model) {
+		childRepositoryT.delete(childRepositoryT.findOne(id));
 		model.addAttribute("married", marriedRepositoryT.findOne(id_ma));
-		//return "redirect:persons";
+		// return "redirect:persons";
 		return "married/view";
 	}
 
@@ -55,20 +55,7 @@ public class ChildController {
 	public String getViewChild(@RequestParam long id, Model model) {
 		model.addAttribute("child", childRepositoryT.findOne(id));
 		return "child/view";
-		
 
-	}
-
-	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
-		Date sqlDate = null;
-		try {
-			sqlDate = new Date(format.parse(dateString).getTime());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-
-		return sqlDate;
 	}
 
 	// to spring-field
@@ -106,5 +93,18 @@ public class ChildController {
 		child = childRepositoryT.save(child);
 
 		return "redirect:persons";
+	}
+
+	public Date convertToSqlDate(String dateString) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
+		Date sqlDate = null;
+
+		try {
+			sqlDate = new Date(format.parse(dateString).getTime());
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		return sqlDate;
+
 	}
 }

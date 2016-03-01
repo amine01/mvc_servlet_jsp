@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Single extends Person {
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	private Passport passport;
 
 	public Single() {
@@ -27,7 +27,5 @@ public class Single extends Person {
 	public void setPassport(Passport passport) {
 		this.passport = passport;
 	}
-
-	
 
 }

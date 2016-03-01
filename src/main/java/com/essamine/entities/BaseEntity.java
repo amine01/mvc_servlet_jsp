@@ -3,21 +3,23 @@ package com.essamine.entities;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
 @MappedSuperclass
 public abstract class BaseEntity {
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
-	public long getId() {
+	@Version
+	private Long version;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
 
 }
