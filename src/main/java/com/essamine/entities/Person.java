@@ -7,13 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person extends UrlEntity {
 
 	@Column(nullable = false, length = 64)
+	@NotBlank
 	private String firstname;
 	@Column(nullable = false, length = 64)
+	@NotBlank
 	private String lastname;
 	@Column(nullable = false, length = 64)
 	private Date dob;
