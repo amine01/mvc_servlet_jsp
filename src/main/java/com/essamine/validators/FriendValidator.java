@@ -15,9 +15,6 @@ public class FriendValidator implements ConstraintValidator<Friend, Single> {
 	@Override
 	public boolean isValid(Single single, ConstraintValidatorContext context) {
 		Single singleF = single.getSingleFriend();
-		// System.out.println(singleF.getId());
-		// System.out.println(single.getId());
-
 		if (single == null)
 			return true;
 		

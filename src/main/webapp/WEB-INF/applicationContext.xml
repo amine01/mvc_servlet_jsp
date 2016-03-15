@@ -26,12 +26,23 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="generateDdl" value="true" />
-				<property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
-				<property name="showSql" value="true"></property>
-			</bean>
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<!-- <property name="generateDdl" value="true" /> <property name="databasePlatform" 
+			value="org.hibernate.dialect.HSQLDialect" /> <property name="showSql" value="true" 
+			/> -->
+		<!-- <property name="hibernate.hbm2ddl.auto" value="create" /> -->
+		<!-- <property name="hibernate.show_sql" value="true" /> -->
+
+
+
+
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />

@@ -79,6 +79,15 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- ############# json object mapper ########### -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.10</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- ############# END ########### -->
+
 
 	</dependencies>
 	<build>

@@ -15,11 +15,9 @@ public class Child extends UrlEntity {
 	@NotBlank
 	private String firstname;
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
-	@NotBlank
 	Passport passport;
 	
 	@ManyToOne(optional = false)
-	@NotBlank
 	Married married;
 
 	public Child() {
