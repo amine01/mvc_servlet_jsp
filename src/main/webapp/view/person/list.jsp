@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset='utf-8'">
+
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-<!-- assets/css/bootstrap.css -->
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,11 +18,11 @@
 		</div>
 		<div class="row">
 			<p>
-				<a class="btn btn-default btn-sm" href="/helloProjectWeb/single?add">
+				<a class="btn btn-primary btn-sm" href="/helloProjectWeb/single?add">
 					<span class="glyphicon glyphicon-plus"></span> Single Person
-				</a> <a class="btn btn-default btn-sm"
+				</a> <a class="btn btn-primary btn-sm"
 					href="/helloProjectWeb/married?add"><span
-					class="glyphicon glyphicon-plus"></span>Married Person</a>
+					class="glyphicon glyphicon-plus"></span> Married Person</a>
 			</p>
 		</div>
 		<div class="row">
