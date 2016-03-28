@@ -4,8 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset='utf-8'">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
 <!-- assets/css/bootstrap.css -->
 <title>Insert title here</title>
 </head>
@@ -17,9 +18,9 @@
 		</div>
 		<div class="row">
 			<p>
-				<a class="btn btn-default btn-xs" href="/helloProjectWeb/single?add">
+				<a class="btn btn-default btn-sm" href="/helloProjectWeb/single?add">
 					<span class="glyphicon glyphicon-plus"></span> Single Person
-				</a> <a class="btn btn-default btn-xs"
+				</a> <a class="btn btn-default btn-sm"
 					href="/helloProjectWeb/married?add"><span
 					class="glyphicon glyphicon-plus"></span>Married Person</a>
 			</p>
@@ -29,20 +30,25 @@
 			<c:if test="${persons.size()>0}">
 				<table class="table table-striped table-bordered table-hover">
 					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Edit</th>
-						<th>Delete</th>
-						<th>View</th>
+						<th class="text-center">First Name</th>
+						<th class="text-center">Last Name</th>
+						<th class="text-center">Action</th>
 					</tr>
 
 					<c:forEach var="person" items="${persons}">
-						<tr>
-							<td><c:out value="${person.firstname}" /></td>
-							<td><c:out value="${person.lastname}" /></td>
-							<td><a href="${person.url}&edit">Edit</a></td>
-							<td><a href="${person.url}&delete">Delete</a></td>
-							<td><a href="${person.url}&view">View</a></td>
+						<tr >
+							<td class="text-center"><c:out value="${person.firstname}" /></td>
+							<td class="text-center"><c:out value="${person.lastname}" /></td>
+							<td class="text-center">
+								<a class="btn btn-warning btn-xs" href="${person.url}&edit">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</a> 
+								<a class="btn btn-danger btn-xs" href="${person.url}&delete">
+									<span class="glyphicon glyphicon-trash"></span></a>
+							 	<a class="btn btn-primary btn-xs" href="${person.url}&view">
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</a>
+							 </td>
 						</tr>
 						<!-- url -->
 					</c:forEach>
