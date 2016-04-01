@@ -29,30 +29,30 @@
 
 			<c:if test="${persons.size()>0}">
 				<table class="table table-striped table-bordered table-hover">
-					<tr>
-						<th class="text-center">First Name</th>
-						<th class="text-center">Last Name</th>
-						<th class="text-center">Action</th>
-					</tr>
-
-					<c:forEach var="person" items="${persons}">
-						<tr >
-							<td class="text-center"><c:out value="${person.firstname}" /></td>
-							<td class="text-center"><c:out value="${person.lastname}" /></td>
-							<td class="text-center">
-								<a class="btn btn-warning btn-xs" href="${person.url}&edit">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</a> 
-								<a class="btn btn-danger btn-xs" href="${person.url}&delete">
-									<span class="glyphicon glyphicon-trash"></span></a>
-							 	<a class="btn btn-primary btn-xs" href="${person.url}&view">
-									<span class="glyphicon glyphicon-eye-open"></span>
-								</a>
-							 </td>
+					<thead>
+						<tr class="bg-info">
+							<th class="text-center">First Name</th>
+							<th class="text-center">Last Name</th>
+							<th class="text-center"></th>
 						</tr>
-						<!-- url -->
-					</c:forEach>
-
+					</thead>
+					<tbody>
+						<c:forEach var="person" items="${persons}">
+							<tr>
+								<td class="text-center"><c:out value="${person.firstname}" /></td>
+								<td class="text-center"><c:out value="${person.lastname}" /></td>
+								<td class="text-center"><a class="btn btn-warning btn-xs"
+									href="${person.url}&edit" title="Edit"> <span
+										class="glyphicon glyphicon-pencil"></span>
+								</a> <a class="btn btn-danger btn-xs" href="${person.url}&delete"
+									title="Delete"> <span class="glyphicon glyphicon-trash"></span></a>
+									<a class="btn btn-primary btn-xs" href="${person.url}&view"
+									title="View"> <span class="glyphicon glyphicon-eye-open"></span>
+								</a></td>
+							</tr>
+							<!-- url -->
+						</c:forEach>
+					</tbody>
 				</table>
 			</c:if>
 		</div>

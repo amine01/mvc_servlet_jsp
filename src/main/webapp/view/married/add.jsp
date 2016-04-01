@@ -27,7 +27,7 @@
 	<div class="container">
 		<div class="row">
 			<h2>Add Married Personnel</h2>
-					</div>
+		</div>
 
 		<form class="form-horizontal" action="/helloProjectWeb/married"
 			method="POST">

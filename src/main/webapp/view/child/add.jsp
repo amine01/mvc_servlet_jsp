@@ -43,15 +43,6 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="lastName" class="col-sm-2 control-label"> Last
-					Name : </label>
-				<div class="col-sm-10">
-					<input type="text" name="lastname" class="form-control"
-						placeholder="Last Name">
-				</div>
-			</div>
-
 			<!-- ######## -->
 			<div class="form-group">
 				<label for="dob" class="col-sm-2 control-label">Date Of
@@ -89,7 +80,7 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<input type="submit" value="Add" class="btn btn-default"> <a
 						href="${married.url}&view" class="btn btn-default">Go back to
-						${married.firstname}</a>
+						${married.lastname}</a>
 				</div>
 			</div>
 

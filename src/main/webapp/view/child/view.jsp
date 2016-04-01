@@ -3,16 +3,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
 <title>VIEW CHILD PERSON</title>
 </head>
 <body>
-	<h1>${child.firstname}</h1>
-	<ul>
-		<li>${child.firstname}</li>
-		<li>${child.passport.passportNumber}</li>
-	</ul>
-	<a href="${child.married.url}&view">Go back to
-		${child.married.firstname}</a>
+	<div class="container">
+		<h1>${child.firstname}
+			${child.married.firstname} <small>${child.passport.passportNumber}</small>
+		</h1>
+<a href="${child.married.url}&view" class="btn btn-default">Go back to you dad
+			${child.married.firstname}</a>
+	</div>
+
 
 </body>
 </html>
