@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<h1>${child.firstname}
-			${child.married.firstname} <small>${child.passport.passportNumber}</small>
+			${child.married.lastname} <small>${child.passport.passportNumber}</small>
 		</h1>
 <a href="${child.married.url}&view" class="btn btn-default">Go back to you dad
 			${child.married.firstname}</a>

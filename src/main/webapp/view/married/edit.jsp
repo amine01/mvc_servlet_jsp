@@ -3,25 +3,65 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script type="text/javascript">
+	// When the document is ready
+	$(document).ready(function() {
+
+		$('.date').datepicker({
+			weekStart : 2
+		});
+
+	});
+</script>
 <title>EDIT MARRIED PERSON</title>
 </head>
 <body>
-	<form action="/helloProjectWeb/married?edit&id=${married.id}"
-		method="POST">
-		<input type="hidden" name="edit">
-		<ul>
-			<li>First name : <input type="text" name="firstname"
-				value="${married.firstname}">
-			</li>
-			<li>Last name : <input type="text" name="lastname"
-				value="${married.lastname}">
-			</li>
-			<li>DOB : <input type="text" name="dob" value="${married.dob}">
-			</li>
-		</ul>
+	<div class="container">
+		<h1>${married.firstname}&nbsp;${married.firstname}&nbsp;<small>Edit</small></h1>
+		<form class="form-horizontal"
+			action="/helloProjectWeb/married?edit&id=${married.id}" method="POST">
+			<input type="hidden" name="edit">
 
-		<input type="submit" value="edit">
-	</form>
-		<a href="/helloProjectWeb/persons">Go back to the list of persons</a>
+			<div class="form-group">
+				<label class="control-label col-sm-2">First name : </label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" name="firstname"
+						value="${married.firstname}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Last name :</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" name="lastname"
+						value="${married.lastname}">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label for="dob" class="col-sm-2 control-label">Date Of
+					Birth :</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control date" name="dob"
+						value="${married.dob}">
+				</div>
+			</div>
+
+			<div class="col-sm-offset-2 col-sm-10">
+				<input class="btn btn-default" type="submit" value="Edit"> <a
+					href="/helloProjectWeb/persons" class="btn btn-default">Go back
+					to the list of persons</a>
+			</div>
+		</form>
+	</div>
+
 </body>
 </html>

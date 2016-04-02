@@ -44,11 +44,13 @@ public class ChildController {
 	}
 
 	@RequestMapping(value = "/child", method = RequestMethod.GET, params = "delete")
-	public String deleteChild(@RequestParam long id, @RequestParam long id_ma, Model model) {
-		childRepositoryT.delete(childRepositoryT.findOne(id));
-		model.addAttribute("married", marriedRepositoryT.findOne(id_ma));
+	public String deleteChild(@RequestParam long id) {
+		Child child=childRepositoryT.findOne(id);
+		childRepositoryT.delete(child);
+		//model.addAttribute("married", marriedRepositoryT.findOne(id_ma));
 		// return "redirect:persons";
-		return "married/view";
+		//return "married/view";
+		return "redirect:married?id="+child.getMarried().getId()+"&view";
 	}
 
 	@RequestMapping(value = "/child", method = RequestMethod.GET, params = "view")
@@ -76,23 +78,18 @@ public class ChildController {
 	}
 
 	@RequestMapping(value = "/child", params = "edit", method = RequestMethod.POST)
-	protected String editChild(@RequestParam long id, @RequestParam String passportnumber,
-			@RequestParam String valid_date, @RequestParam String firstname, @RequestParam String lastname,
-			@RequestParam String dob) {
+	protected String editChild(@RequestParam long id, @RequestParam String firstname,@RequestParam String passportnumber,
+			@RequestParam String valid_date) {
 		Child child = childRepositoryT.findOne(id);
 		Passport passport = child.getPassport();
-
 		child.setFirstname(firstname);
-		// child.setPassport(passport);
-		child.setMarried(null);// TODO
-		// child.setLastname(lastname);
-		// child.setDob(convertToSqlDate(dob));
+		//child.setMarried(null);// TODO
 		passport.setPassportNumber(passportnumber);
 		passport.setValid_date(convertToSqlDate(valid_date));
 		child.setPassport(passport);
 		child = childRepositoryT.save(child);
-
-		return "redirect:persons";
+		//married?id=1&view	return "redirect:persons";
+		return "redirect:married?id="+child.getMarried().getId()+"&view";
 	}
 
 	public Date convertToSqlDate(String dateString) {

@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<h1>${married.firstname}
-			${married.lastname} <small> ${married.dob}</small>
+			${married.lastname}&nbsp;<small>Details</small>
 		</h1>
 
 
@@ -38,7 +38,13 @@
 								<td class="text-center"><c:out value="${child.firstname}" /></td>
 								<td class="text-center"><c:out
 										value="${child.married.lastname}" /></td>
-								<td class="text-center"><a class="btn btn-danger btn-xs"
+								<td class="text-center">
+								
+								<a class="btn btn-warning btn-xs" href="${child.url}&edit" title="Edit">
+								<span class="glyphicon glyphicon-pencil"></span>
+								</a>
+								
+								<a class="btn btn-danger btn-xs"
 									href="${child.url}&delete" title="Delete"> <span
 										class="glyphicon glyphicon-trash"></span></a> <a
 									class="btn btn-primary btn-xs" href="${child.url}&view"
@@ -51,7 +57,7 @@
 				</table>
 			</c:if>
 		</div>
-		<!-- ############## -->
+		<!-- ####### &nbsp; ####### -->
 		<a href="child?id=${married.id}&add" class="btn btn-default">Add a
 			child</a> <a href="persons" class="btn btn-default">Go back to the
 			list of persons</a>

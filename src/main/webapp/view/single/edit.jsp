@@ -17,13 +17,15 @@
 		$('.date').datepicker({
 			weekStart : 2
 		});
-
 	});
 </script>
 <title>EDIT SINGLE PERSON</title>
 </head>
 <body>
 	<div class="container">
+		
+		<h1>${single.firstname}&nbsp;${single.firstname}&nbsp;<small>Edit</small></h1>
+	
 		<form action="/helloProjectWeb/single?edit&id=${single.id}"
 			method="POST" class="form-horizontal">
 			<input type="hidden" name="edit">
