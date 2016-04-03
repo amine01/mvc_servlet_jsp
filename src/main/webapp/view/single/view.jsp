@@ -4,11 +4,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css">
 
 
 <script src="https://code.jquery.com/jquery.js"></script>
+
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/js/jasny-bootstrap.min.js" type="text/javascript"></script>
 
 <title>VIEW SINGLE PERSON</title>
 </head>

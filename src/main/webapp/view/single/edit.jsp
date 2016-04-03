@@ -7,9 +7,15 @@
 <link rel="stylesheet" href="assets/css/bootstrap.css">
 
 
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css">
+
+
 <script src="https://code.jquery.com/jquery.js"></script>
+
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/js/jasny-bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	// When the document is ready
 	$(document).ready(function() {
@@ -65,7 +71,7 @@
 				<label class="col-sm-2 control-label" for="passportnumber">Passport
 					Number :</label>
 				<div class="col-sm-10">
-					<input type="text" id="passportnumber" name="passportnumber"
+					<input type="text" id="passportnumber" name="passportnumber" data-mask="aa9999"
 						value="${passport.passportNumber}" class="form-control">
 				</div>
 			</div>

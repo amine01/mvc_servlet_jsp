@@ -4,11 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset='utf-8'">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/datepicker.css">
+<link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css">
+
 
 <script src="https://code.jquery.com/jquery.js"></script>
+
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/js/jasny-bootstrap.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	// When the document is ready
 	$(document).ready(function() {
@@ -61,7 +65,7 @@
 					Number :</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="passportnumber"
-						placeholder="Passport Number" id="passportNumber">
+						placeholder="Passport Number" id="passportNumber" data-mask="aa9999">
 				</div>
 			</div>
 

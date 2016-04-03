@@ -1,16 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix='form' %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css">
 
 
 <script src="https://code.jquery.com/jquery.js"></script>
+
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/js/jasny-bootstrap.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	// When the document is ready
 	$(document).ready(function() {
@@ -30,8 +36,12 @@
 		<div class="row">
 			<h2>Add Single Personnel</h2>
 		</div>
-		<form action="/helloProjectWeb/single" method="POST"
+	
+		<form:form action="/helloProjectWeb/single"  method="POST" modelAttribute="single"
 			class="form-horizontal">
+			
+				<form:errors path="*" ></form:errors>
+				
 			<input type="hidden" name="add">
 
 			<div class="form-group">
@@ -64,7 +74,8 @@
 					Number :</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="passportnumber"
-						id="passportid" placeholder="Passport Number">
+					id="passportid" placeholder="Passport Number" data-mask="aa9999">
+						
 				</div>
 			</div>
 
@@ -83,7 +94,7 @@
 						List</a>
 				</div>
 			</div>
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>

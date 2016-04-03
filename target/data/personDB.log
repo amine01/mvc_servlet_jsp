@@ -1,6 +1,6 @@
-/*C3*/SET SCHEMA PUBLIC
+/*C9*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C5*/SET SCHEMA PUBLIC
+/*C11*/SET SCHEMA PUBLIC
 alter table Child drop constraint FK3E104FC832F0A55
 alter table Child drop constraint FK3E104FCDF50BBFF
 alter table Married drop constraint FK9541C754E57B4D0B
@@ -25,15 +25,3 @@ alter table Single add constraint FK939D7068832F0A55 foreign key (passport_id) r
 alter table Single add constraint FK939D7068E57B4D0B foreign key (id) references Person
 alter table Single add constraint FK939D70686D22EFF7 foreign key (singleFriend_id) references Single
 alter table Single add constraint FK939D706814180BA1 foreign key (marriedFriend_id) references Married
-/*C8*/SET SCHEMA PUBLIC
-INSERT INTO PASSPORT VALUES(1,0,'ab5252','1989-12-12 00:00:00.000000')
-INSERT INTO PERSON VALUES(1,0,'1989-12-12 00:00:00.000000','amine','emsls')
-INSERT INTO SINGLE VALUES(1,NULL,1,NULL)
-COMMIT
-/*C6*/SET SCHEMA PUBLIC
-INSERT INTO PERSON VALUES(2,0,'1952-08-12 00:00:00.000000','abdkader','jilali')
-INSERT INTO MARRIED VALUES(2)
-COMMIT
-INSERT INTO PASSPORT VALUES(2,0,'ac5299','1956-09-12 00:00:00.000000')
-INSERT INTO CHILD VALUES(1,0,'sdsds',2,2)
-COMMIT

@@ -5,9 +5,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset='utf-8'">
 
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css">
 
+
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="assets/js/jasny-bootstrap.min.js" type="text/javascript"></script>
 <title>Insert title here</title>
 </head>
 <body>
