@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css">
 
+<link rel="stylesheet" href="assets/css/custom_app.css">
+
 
 <script src="https://code.jquery.com/jquery.js"></script>
 
@@ -49,11 +51,16 @@
 								<td class="text-center"><a class="btn btn-warning btn-xs"
 									href="${person.url}&edit" title="Edit"> <span
 										class="glyphicon glyphicon-pencil"></span>
-								</a> <a class="btn btn-danger btn-xs" href="${person.url}&delete"
-									title="Delete"> <span class="glyphicon glyphicon-trash"></span></a>
-									<a class="btn btn-primary btn-xs" href="${person.url}&view"
+								</a> <a class="btn btn-primary btn-xs" href="${person.url}&view"
 									title="View"> <span class="glyphicon glyphicon-eye-open"></span>
-								</a></td>
+								</a>
+
+									<form method="post" action="${person.url}&delete"
+										id="frm_delete">
+										<a class="btn btn-danger btn-xs" title="Delete"
+											data-toggle="modal" data-target="#myModal"> <span
+											class="glyphicon glyphicon-trash"></span></a>
+									</form></td>
 							</tr>
 							<!-- url -->
 						</c:forEach>
@@ -66,18 +73,18 @@
 							href="/helloProjectWeb/persons?page=${currentPage - 1}">Previous</a>
 						</li>
 					</c:if>
-					
+
 					<!-- Pagination -->
-					
+
 					<c:forEach begin="1" end="${noOfPages}" var="i">
-							<c:choose>
-								<c:when test="${currentPage eq i}">
-									<li class="active"><a>${i}</a></li>
-								</c:when>
-								<c:otherwise>
-									<li><a href="/helloProjectWeb/persons?page=${i}">${i}</a></li>
-								</c:otherwise>
-							</c:choose>
+						<c:choose>
+							<c:when test="${currentPage eq i}">
+								<li class="active"><a>${i}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="/helloProjectWeb/persons?page=${i}">${i}</a></li>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 
 					<c:if test="${currentPage lt noOfPages}">
@@ -93,6 +100,31 @@
 
 			</c:if>
 		</div>
+
+		<!-- modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Deletion confirmation</h4>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure ?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default"
+							onclick="$('#frm_delete').submit();">Yes delete</button>
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">No
+							dont delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
 	</div>
 
 </body>

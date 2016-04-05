@@ -43,7 +43,7 @@ public class MarriedController {
 		return "married/view";
 	}
 
-	@RequestMapping(value = "/married", method = RequestMethod.GET, params = "delete")
+	@RequestMapping(value = "/married", method = RequestMethod.POST, params = "delete")
 	public String deleteMarried(@RequestParam long id, Model model) {
 		marriedRepositoryT.delete(id);
 		return "redirect:persons";
