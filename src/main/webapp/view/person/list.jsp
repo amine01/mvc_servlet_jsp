@@ -59,6 +59,38 @@
 						</c:forEach>
 					</tbody>
 				</table>
+
+				<ul class="pagination">
+					<c:if test="${currentPage !=1}">
+						<li><a
+							href="/helloProjectWeb/persons?page=${currentPage - 1}">Previous</a>
+						</li>
+					</c:if>
+					
+					<!-- Pagination -->
+					
+					<c:forEach begin="1" end="${noOfPages}" var="i">
+							<c:choose>
+								<c:when test="${currentPage eq i}">
+									<li class="active"><a>${i}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/helloProjectWeb/persons?page=${i}">${i}</a></li>
+								</c:otherwise>
+							</c:choose>
+					</c:forEach>
+
+					<c:if test="${currentPage lt noOfPages}">
+						<li><a
+							href="/helloProjectWeb/persons?page=${currentPage + 1}">Next</a>
+						</li>
+					</c:if>
+				</ul>
+
+
+
+				<!-- End Pagination -->
+
 			</c:if>
 		</div>
 	</div>
