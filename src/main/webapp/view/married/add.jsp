@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,23 +34,23 @@
 			<h2>Add Married Personnel</h2>
 		</div>
 
-		<form class="form-horizontal" action="/helloProjectWeb/married"
-			method="POST">
+		<form:form class="form-horizontal" action="/helloProjectWeb/married"
+			method="POST" commandName="married">
 			<input type="hidden" name="add">
 			<div class="form-group">
 				<label for="firstName" class="col-sm-2 control-label">First
 					Name :</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="firstname"
-						id="firstName" placeholder="First Name">
+					<form:input type="text" path="firstname" class="form-control"
+						id="firstname" placeholder="Last Name" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="lastname" class="col-sm-2 control-label">Last
 					Name :</label>
 				<div class="col-sm-10">
-					<input type="text" name="lastname" class="form-control"
-						id="lastname" placeholder="Last Name">
+					<form:input type="text" path="lastname" class="form-control"
+						id="lastname" placeholder="Last Name" />
 				</div>
 			</div>
 
@@ -58,8 +60,8 @@
 				<label for="dob" class="col-sm-2 control-label">Date Of
 					Birth :</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control date" name="dob"
-						placeholder="Date Of Birth">
+				<form:input type="text" class="form-control date" path="dob"
+						placeholder="Date Of Birth" />
 				</div>
 			</div>
 			<!-- ### ##### -->
@@ -73,7 +75,7 @@
 						List</a>
 				</div>
 			</div>
-		</form>
+		</form:form>
 	</div>
 
 </body>

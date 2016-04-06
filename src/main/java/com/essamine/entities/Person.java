@@ -56,4 +56,11 @@ public abstract class Person extends UrlEntity {
 		this.dob = dob;
 	}
 
+	@Override
+	public String toString() {
+		return "Person [firstname=" + firstname + ", lastname=" + lastname + ", dob=" + dob + "]";
+	}
+	
+	
+
 }
