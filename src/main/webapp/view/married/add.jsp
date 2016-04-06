@@ -40,17 +40,23 @@
 			<div class="form-group">
 				<label for="firstName" class="col-sm-2 control-label">First
 					Name :</label>
-				<div class="col-sm-10">
+				<div class="col-sm-6">
 					<form:input type="text" path="firstname" class="form-control"
 						id="firstname" placeholder="Last Name" />
+				</div>
+				<div class="col-sm-4">
+					<strong><form:errors path="firstname" cssClass="help-inline alert-danger" /></strong>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="lastname" class="col-sm-2 control-label">Last
 					Name :</label>
-				<div class="col-sm-10">
+				<div class="col-sm-6">
 					<form:input type="text" path="lastname" class="form-control"
 						id="lastname" placeholder="Last Name" />
+				</div>
+				<div class="col-sm-4">
+					<strong><form:errors path="lastname" cssClass="alert-danger"></form:errors></strong>
 				</div>
 			</div>
 
@@ -59,9 +65,13 @@
 			<div class="form-group">
 				<label for="dob" class="col-sm-2 control-label">Date Of
 					Birth :</label>
-				<div class="col-sm-10">
-				<form:input type="text" class="form-control date" path="dob"
+				<div class="col-sm-6">
+					<form:input type="text" class="form-control date" path="dob"
 						placeholder="Date Of Birth" />
+				</div>
+
+				<div class="col-sm-4 ">
+					<form:errors path="dob"></form:errors>
 				</div>
 			</div>
 			<!-- ### ##### -->

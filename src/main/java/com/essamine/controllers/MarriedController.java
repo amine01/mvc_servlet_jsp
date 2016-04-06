@@ -3,7 +3,6 @@ package com.essamine.controllers;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -12,7 +11,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +26,7 @@ public class MarriedController {
 	@Autowired
 	MarriedRepositoryT marriedRepositoryT;
 
-	@RequestMapping(value = "/married", method = RequestMethod.GET, params = "add")
+	@RequestMapping(value = "/married", method = RequestMethod.GET)
 	public String getMarriedAdd(Model model) {
 		model.addAttribute("married", new Married());
 		return "married/add";
@@ -58,26 +56,16 @@ public class MarriedController {
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
 		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, false));
+		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, true));
 	}
 
 	// #######  <------------
 
-
 	@RequestMapping(value = "/married", params = "add", method = RequestMethod.POST)
 	protected String addMarried(@Valid Married married, BindingResult bResult) {
-		if (bResult.hasErrors()) {
-			System.out.println("errors");
-			List<ObjectError> errors = bResult.getAllErrors();
-			for (ObjectError error : errors) {
-				System.out.println(error.getDefaultMessage());
-			}
-			
+		if (bResult.hasErrors()) {		
 			return "married/add";
-
 		} 
-		
-
 		return "redirect:persons";
 	}
 
