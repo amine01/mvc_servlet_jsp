@@ -84,7 +84,7 @@ public class ChildController {
 		Passport passport = child.getPassport();
 		child.setFirstname(firstname);
 		//child.setMarried(null);// TODO
-		passport.setPassportNumber(passportnumber);
+		passport.setPassportnumber(passportnumber);
 		passport.setValid_date(convertToSqlDate(valid_date));
 		child.setPassport(passport);
 		child = childRepositoryT.save(child);

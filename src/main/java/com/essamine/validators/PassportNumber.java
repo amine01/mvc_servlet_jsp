@@ -13,7 +13,7 @@ import javax.validation.Constraint;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PassportNumber {
-	String message() default "Passport Number must be 6 with 4 numeric charachters";
+	String message() default "Passport Number must be 6 with 4 numeric characters";
 
 	Class<?>[] groups() default {};
 

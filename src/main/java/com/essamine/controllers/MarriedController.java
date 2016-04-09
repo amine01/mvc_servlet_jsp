@@ -66,6 +66,7 @@ public class MarriedController {
 		if (bResult.hasErrors()) {		
 			return "married/add";
 		} 
+		married=marriedRepositoryT.save(married);
 		return "redirect:persons";
 	}
 

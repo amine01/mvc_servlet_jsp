@@ -4,9 +4,16 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,29 +25,36 @@ import com.essamine.repositories.SingleRepositoryT;
 
 @Controller
 public class SingleController {
-
 	@Autowired
 	SingleRepositoryT singleRepositoryT;
 	@Autowired
 	MarriedRepositoryT marriedRepositoryT;
+	
+	
+//	########
+//	@Autowired
+//	@Qualifier("")
+//	private Validator v;
+// ######
 
-	// @RequestMapping(value = "/singles", method = RequestMethod.GET)
-	// public String getSingles(Model model) {
-	// model.addAttribute("singles", singleRepositoryT.findAll());
-	// return "single/list";
-	// }
+	@RequestMapping(value = "/single", method = RequestMethod.GET)
+	public String getSingleAdd(Model model) {
 
-	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "add")
-	public String getSingleAdd() {
+		model.addAttribute("single", new Single());
+		// model.addAttribute("passport", new Passport());
 		return "single/add";
 	}
+	//
+	// @RequestMapping(value = "/single", method = RequestMethod.GET)
+	// public String getSingleAdd() {
+	// return "single/add";
+	// }
 
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "edit")
 	public String getSingleEdit(@RequestParam long id, Model model) {
 		model.addAttribute("single", singleRepositoryT.findOne(id));
 		model.addAttribute("singlefs", singleRepositoryT.findAll());
 		model.addAttribute("marriedfs", marriedRepositoryT.findAll());
-
 		return "single/edit";
 	}
 
@@ -53,23 +67,45 @@ public class SingleController {
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "view")
 	public String getViewSingle(@RequestParam long id, Model model) {
 		model.addAttribute("single", singleRepositoryT.findOne(id));
-		// model.addAttribute("singlefs", singleRepositoryT.findAll());
-		// model.addAttribute("marriedfs", marriedRepositoryT.findAll());
 		return "single/view";
-
 	}
 
 	// to spring-field
+	// @RequestParam String passportnumber, @RequestParam String valid_date,
+	// @RequestParam String firstname, @RequestParam String lastname,
+	// @RequestParam String dob
 
+	// @InitBinder
+	// public void initBinder(WebDataBinder binder) {
+	// SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
+	// dateFormat.setLenient(false);
+	// binder.registerCustomEditor(Date.class, "dob", new
+	// CustomDateEditor(dateFormat, true));
+	// }
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, "passport.valid_date", new CustomDateEditor(dateFormat, true));
+		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, true));
+	}
+	
 	@RequestMapping(value = "/single", params = "add", method = RequestMethod.POST)
-	protected String addSingle(@RequestParam String passportnumber, @RequestParam String valid_date,
-			@RequestParam String firstname, @RequestParam String lastname, @RequestParam String dob) {
+	protected String addSingle(@Valid Single single, BindingResult bResult) {
+		// Passport passport = new Passport(passportnumber,
+		// convertToSqlDate(valid_date));
+		// Single single = new Single(firstname, lastname,
+		// convertToSqlDate(dob), passport);
+		if (bResult.hasErrors()) {
+			for (ObjectError error : bResult.getAllErrors()) {
+				System.out.println(error.getObjectName());
+				System.out.println(error.getDefaultMessage());
+			}
+			return "single/add";
 
-		Passport passport = new Passport(passportnumber, convertToSqlDate(valid_date));
-		Single single = new Single(firstname, lastname, convertToSqlDate(dob), passport);
-
-		single = singleRepositoryT.save(single);
-
+		}
+		// single = singleRepositoryT.save(single);
 		return "redirect:persons";
 	}
 
@@ -79,24 +115,20 @@ public class SingleController {
 			@RequestParam String lastname, @RequestParam String dob) {
 		Single single = singleRepositoryT.findOne(id);
 		Passport passport = single.getPassport();
-
 		single.setFirstname(firstname);
 		single.setLastname(lastname);
 		single.setDob(convertToSqlDate(dob));
 		single.setSingleFriend(singleRepositoryT.findOne(singlef));
 		single.setMarriedFriend(marriedRepositoryT.findOne(marriedf));
-		passport.setPassportNumber(passportnumber);
+		passport.setPassportnumber(passportnumber);
 		passport.setValid_date(convertToSqlDate(valid_date));
-
 		single = singleRepositoryT.save(single);
-
 		return "redirect:persons";
 	}
 
 	public Date convertToSqlDate(String dateString) {
 		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
 		Date sqlDate = null;
-
 		try {
 			sqlDate = new Date(format.parse(dateString).getTime());
 		} catch (ParseException e1) {

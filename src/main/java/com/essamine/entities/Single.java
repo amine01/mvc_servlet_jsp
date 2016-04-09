@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 
 import com.essamine.validators.Friend;
 
@@ -14,6 +15,7 @@ import com.essamine.validators.Friend;
 public class Single extends Person {
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@Valid
 	private Passport passport;
 
 	@ManyToOne
