@@ -66,18 +66,20 @@ public class MarriedController {
 		return "redirect:persons";
 	}
 
+	// @RequestParam long id, @RequestParam String firstname, @RequestParam
+	// String lastname,
+	// @RequestParam String dob
 	@RequestMapping(value = "/married", params = "edit", method = RequestMethod.POST)
-	protected String editMarried(@RequestParam long id, @RequestParam String firstname, @RequestParam String lastname,
-			@RequestParam String dob) {
-		Married married = marriedRepositoryT.findOne(id);
+	protected String editMarried(@Valid Married married, BindingResult bResult) {
+		// Married married = marriedRepositoryT.findOne(id);
 		// Passport passport = married.getPassport();
-
-		married.setFirstname(firstname);
-		married.setLastname(lastname);
-		married.setDob(convertToSqlDate(dob));
-
+		// married.setFirstname(firstname);
+		// married.setLastname(lastname);
+		// married.setDob(convertToSqlDate(dob));
+		if (bResult.hasErrors()) {
+			return "married/edit";
+		}
 		married = marriedRepositoryT.save(married);
-
 		return "redirect:persons";
 	}
 
