@@ -22,7 +22,7 @@
 		<table class="table table-striped">
 			<tr>
 				<td><h4>Passport ID :</h4></td>
-				<td>${single.passport.passportNumber}</td>
+				<td>${single.passport.passportnumber}</td>
 			</tr>
 			<tr>
 				<td><h4>Married Friends :</h4></td>

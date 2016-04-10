@@ -76,7 +76,7 @@
 					</div>
 
 					<div class="col-sm-4 ">
-						<form:errors path="dob"></form:errors>
+						<strong><form:errors path="dob" cssClass="help-inline alert-danger"></form:errors></strong>
 					</div>
 				</div>
 			</spring:bind>

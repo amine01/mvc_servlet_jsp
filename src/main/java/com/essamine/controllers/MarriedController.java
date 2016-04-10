@@ -50,8 +50,6 @@ public class MarriedController {
 		return "redirect:persons";
 	}
 
-	// to spring-field
-
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
@@ -59,14 +57,12 @@ public class MarriedController {
 		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, true));
 	}
 
-	// #######  <------------
-
 	@RequestMapping(value = "/married", params = "add", method = RequestMethod.POST)
 	protected String addMarried(@Valid Married married, BindingResult bResult) {
-		if (bResult.hasErrors()) {		
+		if (bResult.hasErrors()) {
 			return "married/add";
-		} 
-		married=marriedRepositoryT.save(married);
+		}
+		married = marriedRepositoryT.save(married);
 		return "redirect:persons";
 	}
 

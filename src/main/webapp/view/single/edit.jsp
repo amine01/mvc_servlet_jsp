@@ -72,7 +72,7 @@
 					Number :</label>
 				<div class="col-sm-10">
 					<input type="text" id="passportnumber" name="passportnumber" data-mask="aa9999"
-						value="${passport.passportNumber}" class="form-control">
+						value="${passport.passportnumber}" class="form-control">
 				</div>
 			</div>
 

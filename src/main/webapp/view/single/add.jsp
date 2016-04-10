@@ -87,7 +87,7 @@
 					<div class="col-sm-6">
 						<form:input type="text" class="form-control" name="passport.passportnumber"
 							path="passport.passportnumber" id="passportid"
-							placeholder="Passport Number"  /><!-- data-mask="aa9999" -->
+							placeholder="Passport Number"  data-mask="aa9999"/>
 					</div>
 					<div class="col-sm-4">
 						<strong><form:errors path="passport.passportnumber"

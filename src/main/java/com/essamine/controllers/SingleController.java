@@ -11,7 +11,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,13 +28,6 @@ public class SingleController {
 	SingleRepositoryT singleRepositoryT;
 	@Autowired
 	MarriedRepositoryT marriedRepositoryT;
-	
-	
-//	########
-//	@Autowired
-//	@Qualifier("")
-//	private Validator v;
-// ######
 
 	@RequestMapping(value = "/single", method = RequestMethod.GET)
 	public String getSingleAdd(Model model) {
@@ -44,11 +36,6 @@ public class SingleController {
 		// model.addAttribute("passport", new Passport());
 		return "single/add";
 	}
-	//
-	// @RequestMapping(value = "/single", method = RequestMethod.GET)
-	// public String getSingleAdd() {
-	// return "single/add";
-	// }
 
 	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "edit")
 	public String getSingleEdit(@RequestParam long id, Model model) {
@@ -58,7 +45,7 @@ public class SingleController {
 		return "single/edit";
 	}
 
-	@RequestMapping(value = "/single", method = RequestMethod.GET, params = "delete")
+	@RequestMapping(value = "/single", method = RequestMethod.POST, params = "delete")
 	public String deleteSingle(@RequestParam long id, Model model) {
 		singleRepositoryT.delete(id);
 		return "redirect:persons";
@@ -70,19 +57,6 @@ public class SingleController {
 		return "single/view";
 	}
 
-	// to spring-field
-	// @RequestParam String passportnumber, @RequestParam String valid_date,
-	// @RequestParam String firstname, @RequestParam String lastname,
-	// @RequestParam String dob
-
-	// @InitBinder
-	// public void initBinder(WebDataBinder binder) {
-	// SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
-	// dateFormat.setLenient(false);
-	// binder.registerCustomEditor(Date.class, "dob", new
-	// CustomDateEditor(dateFormat, true));
-	// }
-	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
@@ -90,22 +64,14 @@ public class SingleController {
 		binder.registerCustomEditor(Date.class, "passport.valid_date", new CustomDateEditor(dateFormat, true));
 		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, true));
 	}
-	
+
 	@RequestMapping(value = "/single", params = "add", method = RequestMethod.POST)
 	protected String addSingle(@Valid Single single, BindingResult bResult) {
-		// Passport passport = new Passport(passportnumber,
-		// convertToSqlDate(valid_date));
-		// Single single = new Single(firstname, lastname,
-		// convertToSqlDate(dob), passport);
 		if (bResult.hasErrors()) {
-			for (ObjectError error : bResult.getAllErrors()) {
-				System.out.println(error.getObjectName());
-				System.out.println(error.getDefaultMessage());
-			}
 			return "single/add";
 
 		}
-		// single = singleRepositoryT.save(single);
+		single = singleRepositoryT.save(single);
 		return "redirect:persons";
 	}
 
