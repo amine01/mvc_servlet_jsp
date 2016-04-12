@@ -1,7 +1,6 @@
 package com.essamine.controllers;
 
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.validation.Valid;
@@ -52,7 +51,7 @@ public class MarriedController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, true));
 	}
@@ -66,33 +65,21 @@ public class MarriedController {
 		return "redirect:persons";
 	}
 
-	// @RequestParam long id, @RequestParam String firstname, @RequestParam
-	// String lastname,
-	// @RequestParam String dob
 	@RequestMapping(value = "/married", params = "edit", method = RequestMethod.POST)
 	protected String editMarried(@Valid Married married, BindingResult bResult) {
-		// Married married = marriedRepositoryT.findOne(id);
-		// Passport passport = married.getPassport();
-		// married.setFirstname(firstname);
-		// married.setLastname(lastname);
-		// married.setDob(convertToSqlDate(dob));
 		if (bResult.hasErrors()) {
 			return "married/edit";
 		}
-		married = marriedRepositoryT.save(married);
+		Married marriedToEdit = marriedRepositoryT.findOne(married.getId());
+		//System.out.println(marriedToEdit);
+		marriedToEdit.setFirstname(married.getFirstname());
+		marriedToEdit.setLastname(married.getLastname());
+		marriedToEdit.setDob(married.getDob());
+		
+		marriedRepositoryT.save(marriedToEdit);
+
 		return "redirect:persons";
 	}
 
-	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
-		Date sqlDate = null;
 
-		try {
-			sqlDate = new Date(format.parse(dateString).getTime());
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		return sqlDate;
-
-	}
 }

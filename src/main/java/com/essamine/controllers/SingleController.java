@@ -59,7 +59,7 @@ public class SingleController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, "passport.valid_date", new CustomDateEditor(dateFormat, true));
 		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, true));
@@ -93,7 +93,7 @@ public class SingleController {
 	}
 
 	public Date convertToSqlDate(String dateString) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy");// HH:mm:ss
+		SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");// HH:mm:ss
 		Date sqlDate = null;
 		try {
 			sqlDate = new Date(format.parse(dateString).getTime());

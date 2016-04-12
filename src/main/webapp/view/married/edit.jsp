@@ -18,8 +18,8 @@
 	$(document).ready(function() {
 
 		$('.date').datepicker({
-			weekStart : 2
-		});
+			format: 'dd-mm-yyyy',
+			});
 	});
 </script>
 <title>EDIT MARRIED PERSON</title>

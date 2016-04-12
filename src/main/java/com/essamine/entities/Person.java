@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -20,10 +22,13 @@ public abstract class Person extends UrlEntity {
 	@Column(nullable = false, length = 64)
 	@NotBlank
 	private String lastname;
-	
+
 	@Column(nullable = false, length = 64)
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date dob;
+
+	// @Temporal(TemporalType.DATE)
 
 	public Person() {
 
@@ -61,7 +66,8 @@ public abstract class Person extends UrlEntity {
 
 	@Override
 	public String toString() {
-		return "Person [firstname=" + firstname + ", lastname=" + lastname + ", dob=" + dob + "]";
+		return "Person [ID=" + super.getId() + "firstname=" + firstname + ", lastname=" + lastname + ", dob=" + dob
+				+ "]";
 	}
 
 }
