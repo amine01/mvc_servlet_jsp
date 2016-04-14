@@ -48,12 +48,18 @@
 							<tr>
 								<td class="text-center"><c:out value="${person.firstname}" /></td>
 								<td class="text-center"><c:out value="${person.lastname}" /></td>
-								<td class="text-center"><a class="btn btn-warning btn-xs"
+								<td class="text-center">
+								
+								<a class="btn btn-warning btn-xs"
 									href="${person.url}&edit" title="Edit"> <span
 										class="glyphicon glyphicon-pencil"></span>
-								</a> <a class="btn btn-primary btn-xs" href="${person.url}&view"
-									title="View"> <span class="glyphicon glyphicon-eye-open"></span>
 								</a>
+									
+										<%-- <form method="post" action="${person.url}&view" id="frm_edit"> --%>
+										<a class="btn btn-primary btn-xs" title="View" href="${person.url}&view"> <span
+											class="glyphicon glyphicon-eye-open"></span>
+										</a> <!-- 	</form> -->
+
 
 									<form method="post" action="${person.url}&delete"
 										id="frm_delete">
@@ -118,7 +124,8 @@
 						<button type="button" class="btn btn-default"
 							onclick="$('#frm_delete').submit();">Yes, delete</button>
 
-						<button type="button" class="btn btn-primary" data-dismiss="modal">No, don't delete</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">No,
+							don't delete</button>
 					</div>
 				</div>
 			</div>

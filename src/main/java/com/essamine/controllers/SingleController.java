@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.essamine.entities.Passport;
 import com.essamine.entities.Single;
 import com.essamine.repositories.MarriedRepositoryT;
 import com.essamine.repositories.SingleRepositoryT;
@@ -76,19 +75,30 @@ public class SingleController {
 	}
 
 	@RequestMapping(value = "/single", params = "edit", method = RequestMethod.POST)
-	protected String editSingle(@RequestParam long id, @RequestParam long marriedf, @RequestParam long singlef,
-			@RequestParam String passportnumber, @RequestParam String valid_date, @RequestParam String firstname,
-			@RequestParam String lastname, @RequestParam String dob) {
-		Single single = singleRepositoryT.findOne(id);
-		Passport passport = single.getPassport();
-		single.setFirstname(firstname);
-		single.setLastname(lastname);
-		single.setDob(convertToSqlDate(dob));
-		single.setSingleFriend(singleRepositoryT.findOne(singlef));
-		single.setMarriedFriend(marriedRepositoryT.findOne(marriedf));
-		passport.setPassportnumber(passportnumber);
-		passport.setValid_date(convertToSqlDate(valid_date));
-		single = singleRepositoryT.save(single);
+	protected String editSingle(@Valid Single single, BindingResult bResult) {
+		Single singleToEdit = singleRepositoryT.findOne(single.getId());
+		if (bResult.hasErrors()) {
+			return "single/edit";
+		}
+
+		singleToEdit.setFirstname(single.getFirstname());
+		singleToEdit.setLastname(single.getLastname());
+		singleToEdit.setDob(single.getDob());
+		singleToEdit.setMarriedFriend(single.getMarriedFriend());
+		singleToEdit.setSingleFriend(single.getSingleFriend());
+		singleToEdit.setPassport(single.getPassport());
+		
+		
+		// Single single = singleRepositoryT.findOne(id);
+		// Passport passport = single.getPassport();
+		// single.setFirstname(firstname);
+		// single.setLastname(lastname);
+		// single.setDob(convertToSqlDate(dob));
+		// single.setSingleFriend(singleRepositoryT.findOne(singlef));
+		// single.setMarriedFriend(marriedRepositoryT.findOne(marriedf));
+		// passport.setPassportnumber(passportnumber);
+		// passport.setValid_date(convertToSqlDate(valid_date));
+		// single = singleRepositoryT.save(single);
 		return "redirect:persons";
 	}
 

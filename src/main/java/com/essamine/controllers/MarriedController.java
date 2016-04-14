@@ -71,7 +71,6 @@ public class MarriedController {
 			return "married/edit";
 		}
 		Married marriedToEdit = marriedRepositoryT.findOne(married.getId());
-		//System.out.println(marriedToEdit);
 		marriedToEdit.setFirstname(married.getFirstname());
 		marriedToEdit.setLastname(married.getLastname());
 		marriedToEdit.setDob(married.getDob());

@@ -1,5 +1,7 @@
-#frm_delete { 
+#frm_delete {
+	display: inline-block;
+}
 
-    display: inline-block;
-
+#frm_edit {
+	display: inline-block;
 }
